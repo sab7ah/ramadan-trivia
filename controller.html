@@ -590,7 +590,7 @@ function renderLivePlayers(s){
   ps.forEach(([name,score],i)=>{
     const row=document.createElement('div');
     row.className='live-player';
-    row.innerHTML=`<div class="live-player-score">${score.toLocaleString('ar-EG')}</div><div class="live-player-name">${toAr(i+1)}. ${name}</div>`;
+    row.innerHTML=`<div class="live-player-score">${score.toLocaleString('en-US')}</div><div class="live-player-name">${toAr(i+1)}. ${name}</div>`;
     c.appendChild(row);
   });
 }
@@ -741,7 +741,7 @@ function renderAnalytics(s){
   const medals=['🥇','🥈','🥉'];
   sorted.forEach(([name,score],i)=>{
     const tr=document.createElement('tr');
-    tr.innerHTML=`<td style="color:rgba(245,234,208,0.4);font-size:13px;">✓</td><td class="score-cell">${score.toLocaleString('ar-EG')}</td><td>${name}</td><td class="rank-cell">${i<3?medals[i]:'#'+toAr(i+1)}</td>`;
+    tr.innerHTML=`<td style="color:rgba(245,234,208,0.4);font-size:13px;">✓</td><td class="score-cell">${score.toLocaleString('en-US')}</td><td>${name}</td><td class="rank-cell">${i<3?medals[i]:'#'+toAr(i+1)}</td>`;
     tbody.appendChild(tr);
   });
   if(!sorted.length) tbody.innerHTML='<tr><td colspan="4" style="color:rgba(245,234,208,0.3);padding:20px;text-align:center;">لا يوجد لاعبون بعد</td></tr>';
