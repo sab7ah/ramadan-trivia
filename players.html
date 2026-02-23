@@ -6,166 +6,114 @@
 <title>مسابقة رمضان — اللاعبون</title>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --midnight:#0a0e1a; --navy:#0f1729;
-    --gold:#c9a84c; --gold-light:#f0d080; --gold-dim:#8a6f2e;
-    --cream:#f5ead0; --red:#c0392b; --green:#1a9c4f;
-    --card-bg:rgba(15,23,41,0.92);
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { background:var(--midnight); color:var(--cream); font-family:'Tajawal',sans-serif; min-height:100vh; overflow-x:hidden; position:relative; direction:rtl; }
-  body::before { content:''; position:fixed; inset:0; background-image: repeating-linear-gradient(60deg,transparent,transparent 40px,rgba(201,168,76,0.03) 40px,rgba(201,168,76,0.03) 41px), repeating-linear-gradient(-60deg,transparent,transparent 40px,rgba(201,168,76,0.03) 40px,rgba(201,168,76,0.03) 41px); pointer-events:none; z-index:0; }
-  body::after { content:''; position:fixed; top:-200px; left:50%; transform:translateX(-50%); width:600px; height:600px; background:radial-gradient(circle,rgba(201,168,76,0.08) 0%,transparent 70%); pointer-events:none; z-index:0; }
-  .app { position:relative; z-index:1; }
+  :root{--midnight:#0a0e1a;--navy:#0f1729;--gold:#c9a84c;--gold-light:#f0d080;--gold-dim:#8a6f2e;--cream:#f5ead0;--red:#c0392b;--green:#1a9c4f;--card-bg:rgba(15,23,41,0.92);}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--midnight);color:var(--cream);font-family:'Tajawal',sans-serif;min-height:100vh;overflow-x:hidden;position:relative;direction:rtl;}
+  body::before{content:'';position:fixed;inset:0;background-image:repeating-linear-gradient(60deg,transparent,transparent 40px,rgba(201,168,76,0.03) 40px,rgba(201,168,76,0.03) 41px),repeating-linear-gradient(-60deg,transparent,transparent 40px,rgba(201,168,76,0.03) 40px,rgba(201,168,76,0.03) 41px);pointer-events:none;z-index:0;}
+  body::after{content:'';position:fixed;top:-200px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(201,168,76,0.08) 0%,transparent 70%);pointer-events:none;z-index:0;}
+  .app{position:relative;z-index:1;}
 
-  /* HEADER */
-  header { display:flex; align-items:center; justify-content:space-between; padding:16px 32px; border-bottom:1px solid rgba(201,168,76,0.2); background:rgba(10,14,26,0.85); backdrop-filter:blur(10px); position:sticky; top:0; z-index:100; }
-  .logo { display:flex; align-items:center; gap:12px; }
-  .logo-icon { font-size:28px; filter:drop-shadow(0 0 8px rgba(201,168,76,0.6)); }
-  .logo-text { font-family:'Amiri',serif; font-size:26px; color:var(--gold); text-shadow:0 0 20px rgba(201,168,76,0.4); }
-  .room-badge { display:flex; align-items:center; gap:8px; padding:6px 16px; border:1px solid rgba(201,168,76,0.3); border-radius:20px; font-size:13px; color:var(--gold); }
-  .dot { width:8px; height:8px; border-radius:50%; background:var(--green); animation:pulse 1.5s infinite; }
-  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);} }
+  header{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;border-bottom:1px solid rgba(201,168,76,0.2);background:rgba(10,14,26,0.85);backdrop-filter:blur(10px);position:sticky;top:0;z-index:100;}
+  .logo{display:flex;align-items:center;gap:12px;}
+  .logo-icon{font-size:28px;filter:drop-shadow(0 0 8px rgba(201,168,76,0.6));}
+  .logo-text{font-family:'Amiri',serif;font-size:26px;color:var(--gold);text-shadow:0 0 20px rgba(201,168,76,0.4);}
+  .room-badge{display:flex;align-items:center;gap:8px;padding:6px 16px;border:1px solid rgba(201,168,76,0.3);border-radius:20px;font-size:13px;color:var(--gold);}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 1.5s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);}}
 
-  /* ── STEP 1: ENTER ROOM CODE ── */
-  #step-room {
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    min-height:calc(100vh - 73px); text-align:center; padding:40px; gap:28px;
-  }
+  /* STEP 1 */
+  #step-room{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 73px);text-align:center;padding:40px;gap:28px;}
+  .lantern{font-size:80px;animation:lanternSwing 3s ease-in-out infinite;filter:drop-shadow(0 0 20px rgba(201,168,76,0.5));}
+  @keyframes lanternSwing{0%,100%{transform:rotate(-5deg);}50%{transform:rotate(5deg);}}
+  .step-title{font-family:'Amiri',serif;font-size:clamp(26px,5vw,50px);color:var(--gold-light);text-shadow:0 0 30px rgba(201,168,76,0.3);}
+  .step-sub{font-size:16px;color:rgba(245,234,208,0.5);max-width:400px;line-height:1.8;}
+  .room-enter-box{display:flex;flex-direction:column;align-items:center;gap:16px;background:rgba(201,168,76,0.04);border:2px solid rgba(201,168,76,0.2);border-radius:20px;padding:32px 48px;width:100%;max-width:440px;}
+  .room-enter-label{font-size:13px;color:var(--gold-dim);letter-spacing:1px;}
+  .room-code-input{background:rgba(201,168,76,0.08);border:2px solid rgba(201,168,76,0.3);border-radius:14px;padding:16px 24px;color:var(--gold-light);font-family:'Amiri',serif;font-size:40px;letter-spacing:12px;text-align:center;outline:none;width:100%;text-transform:uppercase;transition:border-color 0.3s,box-shadow 0.3s;}
+  .room-code-input:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(201,168,76,0.12);}
+  .room-code-input::placeholder{color:rgba(245,234,208,0.2);font-size:20px;letter-spacing:4px;}
+  .name-input{background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.3);border-radius:12px;padding:14px 20px;color:var(--cream);font-family:'Tajawal',sans-serif;font-size:16px;outline:none;text-align:right;width:100%;transition:border-color 0.3s,box-shadow 0.3s;}
+  .name-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,0.1);}
+  .name-input::placeholder{color:rgba(245,234,208,0.3);}
+  .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-dim));border:none;border-radius:12px;padding:15px 36px;color:var(--midnight);font-family:'Tajawal',sans-serif;font-size:16px;font-weight:700;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;width:100%;}
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(201,168,76,0.3);}
+  .btn-gold:active{transform:translateY(0);}
+  .btn-gold:disabled{opacity:0.4;cursor:not-allowed;transform:none;}
+  .error-msg{color:#e74c3c;font-size:14px;background:rgba(192,57,43,0.1);border:1px solid rgba(192,57,43,0.3);border-radius:10px;padding:10px 18px;width:100%;text-align:center;}
 
-  .lantern { font-size:80px; animation:lanternSwing 3s ease-in-out infinite; filter:drop-shadow(0 0 20px rgba(201,168,76,0.5)); }
-  @keyframes lanternSwing { 0%,100%{transform:rotate(-5deg);}50%{transform:rotate(5deg);} }
+  /* LOBBY */
+  #step-lobby{display:none;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 73px);text-align:center;padding:40px;gap:24px;}
+  .join-code-box{border:2px solid var(--gold);border-radius:16px;padding:22px 44px;background:rgba(201,168,76,0.05);position:relative;overflow:hidden;}
+  .join-code-box::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,0.05),transparent);}
+  .join-code-label{font-size:13px;color:var(--gold-dim);margin-bottom:6px;}
+  .join-code{font-family:'Amiri',serif;font-size:48px;color:var(--gold-light);letter-spacing:10px;font-weight:700;}
+  .players-waiting{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:600px;}
+  .player-chip{background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25);border-radius:20px;padding:7px 18px;font-size:15px;color:var(--gold-light);animation:chipIn 0.3s ease;}
+  @keyframes chipIn{from{transform:scale(0.5);opacity:0;}to{transform:scale(1);opacity:1;}}
+  .ornament{display:flex;align-items:center;gap:12px;width:100%;color:rgba(201,168,76,0.3);font-size:20px;}
+  .ornament-line{flex:1;height:1px;background:rgba(201,168,76,0.2);}
+  .my-name-badge{padding:12px 24px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);border-radius:12px;font-size:16px;color:var(--gold);display:inline-flex;align-items:center;gap:10px;}
 
-  .step-title { font-family:'Amiri',serif; font-size:clamp(26px,5vw,50px); color:var(--gold-light); text-shadow:0 0 30px rgba(201,168,76,0.3); }
-  .step-sub { font-size:16px; color:rgba(245,234,208,0.5); max-width:400px; line-height:1.8; }
+  /* GAME */
+  #game-screen{display:none;max-width:900px;margin:0 auto;padding:24px;gap:24px;flex-direction:column;}
+  .question-card{background:var(--card-bg);border:1px solid rgba(201,168,76,0.25);border-radius:24px;padding:36px;position:relative;overflow:hidden;}
+  .question-card::before{content:'';position:absolute;top:-50%;left:-50%;width:300px;height:300px;background:radial-gradient(circle,rgba(201,168,76,0.06),transparent 70%);pointer-events:none;}
+  .q-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-direction:row-reverse;}
+  .q-number{font-size:15px;color:var(--gold-dim);}
+  .timer-ring{position:relative;width:70px;height:70px;}
+  .timer-svg{transform:rotate(-90deg);}
+  .timer-circle-bg{fill:none;stroke:rgba(201,168,76,0.15);stroke-width:5;}
+  .timer-circle{fill:none;stroke:var(--gold);stroke-width:5;stroke-linecap:round;stroke-dasharray:188.5;stroke-dashoffset:0;transition:stroke-dashoffset 1s linear,stroke 0.5s;}
+  .timer-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Amiri',serif;font-size:24px;font-weight:700;color:var(--gold-light);}
+  .question-text{font-family:'Amiri',serif;font-size:clamp(20px,3vw,32px);color:var(--cream);line-height:1.8;margin-bottom:32px;text-align:center;direction:rtl;}
+  .answers-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:600px){.answers-grid{grid-template-columns:1fr;}}
+  .answer-btn{background:rgba(255,255,255,0.04);border:2px solid rgba(201,168,76,0.2);border-radius:16px;padding:18px 20px;color:var(--cream);font-family:'Tajawal',sans-serif;font-size:16px;cursor:pointer;text-align:right;direction:rtl;transition:all 0.2s;display:flex;align-items:center;gap:12px;flex-direction:row-reverse;position:relative;overflow:hidden;}
+  .answer-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(270deg,rgba(201,168,76,0.08),transparent);opacity:0;transition:opacity 0.3s;}
+  .answer-btn:hover:not(:disabled){border-color:var(--gold);transform:translateY(-2px);box-shadow:0 6px 20px rgba(201,168,76,0.15);}
+  .answer-btn:hover:not(:disabled)::before{opacity:1;}
+  .answer-btn:disabled{cursor:default;}
+  .answer-letter{min-width:36px;height:36px;background:rgba(201,168,76,0.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Amiri',serif;font-weight:700;color:var(--gold);font-size:18px;flex-shrink:0;transition:background 0.3s;}
+  .answer-btn.correct{border-color:var(--green);background:rgba(26,156,79,0.15);animation:correctPop 0.4s ease;}
+  .answer-btn.correct .answer-letter{background:var(--green);color:white;}
+  .answer-btn.wrong{border-color:var(--red);background:rgba(192,57,43,0.15);}
+  .answer-btn.wrong .answer-letter{background:var(--red);color:white;}
+  @keyframes correctPop{0%{transform:scale(1);}50%{transform:scale(1.04);}100%{transform:scale(1);}}
 
-  .room-enter-box {
-    display:flex; flex-direction:column; align-items:center; gap:16px;
-    background:rgba(201,168,76,0.04); border:2px solid rgba(201,168,76,0.2);
-    border-radius:20px; padding:32px 48px; width:100%; max-width:440px;
-  }
+  .points-toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);background:linear-gradient(135deg,var(--gold),#8a6f2e);color:var(--midnight);font-family:'Amiri',serif;font-size:52px;font-weight:700;padding:24px 48px;border-radius:24px;z-index:999;pointer-events:none;box-shadow:0 20px 60px rgba(201,168,76,0.4);opacity:0;transition:transform 0.3s cubic-bezier(0.175,0.885,0.32,1.275),opacity 0.3s;text-align:center;}
+  .points-toast.show{transform:translate(-50%,-50%) scale(1);opacity:1;}
+  .points-toast.hide{transform:translate(-50%,-70%) scale(0.8);opacity:0;transition:transform 0.4s ease,opacity 0.4s ease;}
+  .points-sub{font-size:16px;font-family:'Tajawal',sans-serif;opacity:0.7;margin-top:4px;}
 
-  .room-enter-label { font-size:13px; color:var(--gold-dim); letter-spacing:1px; }
-
-  .room-code-input {
-    background:rgba(201,168,76,0.08); border:2px solid rgba(201,168,76,0.3);
-    border-radius:14px; padding:16px 24px; color:var(--gold-light);
-    font-family:'Amiri',serif; font-size:40px; letter-spacing:12px;
-    text-align:center; outline:none; width:100%; text-transform:uppercase;
-    transition:border-color 0.3s, box-shadow 0.3s;
-  }
-  .room-code-input:focus { border-color:var(--gold); box-shadow:0 0 0 4px rgba(201,168,76,0.12); }
-  .room-code-input::placeholder { color:rgba(245,234,208,0.2); font-size:20px; letter-spacing:4px; }
-
-  .name-input {
-    background:rgba(201,168,76,0.06); border:1px solid rgba(201,168,76,0.3);
-    border-radius:12px; padding:14px 20px; color:var(--cream);
-    font-family:'Tajawal',sans-serif; font-size:16px; outline:none;
-    text-align:right; width:100%;
-    transition:border-color 0.3s, box-shadow 0.3s;
-  }
-  .name-input:focus { border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,168,76,0.1); }
-  .name-input::placeholder { color:rgba(245,234,208,0.3); }
-
-  .btn-gold { background:linear-gradient(135deg,var(--gold),var(--gold-dim)); border:none; border-radius:12px; padding:15px 36px; color:var(--midnight); font-family:'Tajawal',sans-serif; font-size:16px; font-weight:700; cursor:pointer; transition:transform 0.2s,box-shadow 0.2s; width:100%; }
-  .btn-gold:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(201,168,76,0.3); }
-  .btn-gold:active { transform:translateY(0); }
-  .btn-gold:disabled { opacity:0.4; cursor:not-allowed; transform:none; }
-
-  .error-msg { color:#e74c3c; font-size:14px; background:rgba(192,57,43,0.1); border:1px solid rgba(192,57,43,0.3); border-radius:10px; padding:10px 18px; width:100%; text-align:center; }
-
-  /* ── STEP 2: LOBBY / WAITING ── */
-  #step-lobby {
-    display:none; flex-direction:column; align-items:center; justify-content:center;
-    min-height:calc(100vh - 73px); text-align:center; padding:40px; gap:24px;
-  }
-
-  .join-code-box { border:2px solid var(--gold); border-radius:16px; padding:22px 44px; background:rgba(201,168,76,0.05); position:relative; overflow:hidden; }
-  .join-code-box::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(201,168,76,0.05),transparent); }
-  .join-code-label { font-size:13px; color:var(--gold-dim); margin-bottom:6px; }
-  .join-code { font-family:'Amiri',serif; font-size:48px; color:var(--gold-light); letter-spacing:10px; font-weight:700; }
-
-  .players-waiting { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; max-width:600px; }
-  .player-chip { background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.25); border-radius:20px; padding:7px 18px; font-size:15px; color:var(--gold-light); animation:chipIn 0.3s ease; }
-  @keyframes chipIn { from{transform:scale(0.5);opacity:0;}to{transform:scale(1);opacity:1;} }
-
-  .ornament { display:flex; align-items:center; gap:12px; width:100%; color:rgba(201,168,76,0.3); font-size:20px; }
-  .ornament-line { flex:1; height:1px; background:rgba(201,168,76,0.2); }
-
-  .my-name-badge { padding:12px 24px; background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.3); border-radius:12px; font-size:16px; color:var(--gold); display:inline-flex; align-items:center; gap:10px; }
-
-  /* ── GAME SCREEN ── */
-  #game-screen { display:none; max-width:900px; margin:0 auto; padding:24px; gap:24px; flex-direction:column; }
-
-  .question-card { background:var(--card-bg); border:1px solid rgba(201,168,76,0.25); border-radius:24px; padding:36px; position:relative; overflow:hidden; }
-  .question-card::before { content:''; position:absolute; top:-50%; left:-50%; width:300px; height:300px; background:radial-gradient(circle,rgba(201,168,76,0.06),transparent 70%); pointer-events:none; }
-
-  .q-meta { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-direction:row-reverse; }
-  .q-number { font-size:15px; color:var(--gold-dim); }
-
-  .timer-ring { position:relative; width:70px; height:70px; }
-  .timer-svg { transform:rotate(-90deg); }
-  .timer-circle-bg { fill:none; stroke:rgba(201,168,76,0.15); stroke-width:5; }
-  .timer-circle { fill:none; stroke:var(--gold); stroke-width:5; stroke-linecap:round; stroke-dasharray:188.5; stroke-dashoffset:0; transition:stroke-dashoffset 1s linear,stroke 0.5s; }
-  .timer-text { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:'Amiri',serif; font-size:24px; font-weight:700; color:var(--gold-light); }
-
-  .question-text { font-family:'Amiri',serif; font-size:clamp(20px,3vw,32px); color:var(--cream); line-height:1.8; margin-bottom:32px; text-align:center; direction:rtl; }
-
-  .answers-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-  @media(max-width:600px){ .answers-grid { grid-template-columns:1fr; } }
-
-  .answer-btn { background:rgba(255,255,255,0.04); border:2px solid rgba(201,168,76,0.2); border-radius:16px; padding:18px 20px; color:var(--cream); font-family:'Tajawal',sans-serif; font-size:16px; cursor:pointer; text-align:right; direction:rtl; transition:all 0.2s; display:flex; align-items:center; gap:12px; flex-direction:row-reverse; position:relative; overflow:hidden; }
-  .answer-btn::before { content:''; position:absolute; inset:0; background:linear-gradient(270deg,rgba(201,168,76,0.08),transparent); opacity:0; transition:opacity 0.3s; }
-  .answer-btn:hover:not(:disabled) { border-color:var(--gold); transform:translateY(-2px); box-shadow:0 6px 20px rgba(201,168,76,0.15); }
-  .answer-btn:hover:not(:disabled)::before { opacity:1; }
-  .answer-btn:disabled { cursor:default; }
-
-  .answer-letter { min-width:36px; height:36px; background:rgba(201,168,76,0.15); border-radius:8px; display:flex; align-items:center; justify-content:center; font-family:'Amiri',serif; font-weight:700; color:var(--gold); font-size:18px; flex-shrink:0; transition:background 0.3s; }
-
-  .answer-btn.correct { border-color:var(--green); background:rgba(26,156,79,0.15); animation:correctPop 0.4s ease; }
-  .answer-btn.correct .answer-letter { background:var(--green); color:white; }
-  .answer-btn.wrong { border-color:var(--red); background:rgba(192,57,43,0.15); }
-  .answer-btn.wrong .answer-letter { background:var(--red); color:white; }
-  @keyframes correctPop { 0%{transform:scale(1);}50%{transform:scale(1.04);}100%{transform:scale(1);} }
-
-  /* POINTS TOAST */
-  .points-toast { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0); background:linear-gradient(135deg,var(--gold),#8a6f2e); color:var(--midnight); font-family:'Amiri',serif; font-size:52px; font-weight:700; padding:24px 48px; border-radius:24px; z-index:999; pointer-events:none; box-shadow:0 20px 60px rgba(201,168,76,0.4); opacity:0; transition:transform 0.3s cubic-bezier(0.175,0.885,0.32,1.275),opacity 0.3s; text-align:center; }
-  .points-toast.show { transform:translate(-50%,-50%) scale(1); opacity:1; }
-  .points-toast.hide { transform:translate(-50%,-70%) scale(0.8); opacity:0; transition:transform 0.4s ease,opacity 0.4s ease; }
-  .points-sub { font-size:16px; font-family:'Tajawal',sans-serif; opacity:0.7; margin-top:4px; }
-
-  /* LEADERBOARD */
-  .leaderboard-card { background:var(--card-bg); border:1px solid rgba(201,168,76,0.25); border-radius:24px; padding:28px; overflow:hidden; }
-  .lb-header { display:flex; align-items:center; gap:10px; margin-bottom:20px; font-family:'Amiri',serif; font-size:22px; color:var(--gold-light); flex-direction:row-reverse; }
-  .lb-row { display:flex; align-items:center; gap:12px; padding:12px 16px; border-radius:12px; margin-bottom:8px; background:rgba(255,255,255,0.03); border:1px solid transparent; transition:all 0.4s ease; position:relative; flex-direction:row-reverse; }
-  .lb-row.my-row { border-color:rgba(201,168,76,0.3); background:rgba(201,168,76,0.06); }
-  .lb-rank { width:30px; font-family:'Amiri',serif; font-weight:700; font-size:18px; color:var(--gold-dim); text-align:center; flex-shrink:0; }
-  .lb-rank.top-1{color:#ffd700;} .lb-rank.top-2{color:#c0c0c0;} .lb-rank.top-3{color:#cd7f32;}
-  .lb-name { flex:1; font-size:15px; font-weight:500; text-align:right; }
-  .lb-score { font-family:'Amiri',serif; font-size:18px; font-weight:700; color:var(--gold-light); }
-  .lb-bar-wrap { position:absolute; bottom:0; left:0; right:0; height:2px; border-radius:0 0 12px 12px; overflow:hidden; }
-  .lb-bar { height:100%; background:linear-gradient(270deg,var(--gold-dim),var(--gold)); transition:width 0.8s ease; border-radius:inherit; margin-right:auto; }
+  .leaderboard-card{background:var(--card-bg);border:1px solid rgba(201,168,76,0.25);border-radius:24px;padding:28px;overflow:hidden;}
+  .lb-header{display:flex;align-items:center;gap:10px;margin-bottom:20px;font-family:'Amiri',serif;font-size:22px;color:var(--gold-light);flex-direction:row-reverse;}
+  .lb-row{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;margin-bottom:8px;background:rgba(255,255,255,0.03);border:1px solid transparent;transition:all 0.4s ease;position:relative;flex-direction:row-reverse;}
+  .lb-row.my-row{border-color:rgba(201,168,76,0.3);background:rgba(201,168,76,0.06);}
+  .lb-rank{width:30px;font-family:'Amiri',serif;font-weight:700;font-size:18px;color:var(--gold-dim);text-align:center;flex-shrink:0;}
+  .lb-rank.top-1{color:#ffd700;}.lb-rank.top-2{color:#c0c0c0;}.lb-rank.top-3{color:#cd7f32;}
+  .lb-name{flex:1;font-size:15px;font-weight:500;text-align:right;}
+  .lb-score{font-family:'Amiri',serif;font-size:18px;font-weight:700;color:var(--gold-light);}
+  .lb-bar-wrap{position:absolute;bottom:0;left:0;right:0;height:2px;border-radius:0 0 12px 12px;overflow:hidden;}
+  .lb-bar{height:100%;background:linear-gradient(270deg,var(--gold-dim),var(--gold));transition:width 0.8s ease;border-radius:inherit;margin-right:auto;}
 
   /* RESULTS */
-  #results-screen { display:none; flex-direction:column; align-items:center; justify-content:center; min-height:calc(100vh - 73px); padding:40px; gap:32px; text-align:center; }
-  .results-title { font-family:'Amiri',serif; font-size:clamp(36px,6vw,60px); color:var(--gold-light); text-shadow:0 0 40px rgba(201,168,76,0.4); }
-  .final-score-box { border:2px solid var(--gold); border-radius:20px; padding:28px 56px; background:rgba(201,168,76,0.05); }
-  .final-score-label { font-size:14px; color:var(--gold-dim); margin-bottom:6px; }
-  .final-score-val { font-family:'Amiri',serif; font-size:56px; color:var(--gold-light); font-weight:700; }
-  .stars { font-size:48px; animation:starsIn 0.6s ease; }
-  @keyframes starsIn { from{transform:scale(0) rotate(-20deg);opacity:0;}to{transform:scale(1) rotate(0);opacity:1;} }
-
-  .waiting-next { text-align:center; padding:20px; color:rgba(245,234,208,0.4); font-size:15px; animation:blink 2s infinite; }
-  @keyframes blink { 0%,100%{opacity:1;}50%{opacity:0.3;} }
-  .arabesque { text-align:center; font-size:24px; color:rgba(201,168,76,0.3); letter-spacing:8px; }
-  .confetti-piece { position:fixed; width:8px; height:8px; pointer-events:none; z-index:1000; border-radius:2px; animation:confettiFall linear forwards; }
-  @keyframes confettiFall { 0%{transform:translateY(-20px) rotate(0deg);opacity:1;}100%{transform:translateY(100vh) rotate(720deg);opacity:0;} }
-  .hidden { display:none !important; }
+  #results-screen{display:none;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 73px);padding:40px;gap:32px;text-align:center;}
+  .results-title{font-family:'Amiri',serif;font-size:clamp(36px,6vw,60px);color:var(--gold-light);text-shadow:0 0 40px rgba(201,168,76,0.4);}
+  .final-score-box{border:2px solid var(--gold);border-radius:20px;padding:28px 56px;background:rgba(201,168,76,0.05);}
+  .final-score-label{font-size:14px;color:var(--gold-dim);margin-bottom:6px;}
+  .final-score-val{font-family:'Amiri',serif;font-size:56px;color:var(--gold-light);font-weight:700;}
+  .stars{font-size:48px;animation:starsIn 0.6s ease;}
+  @keyframes starsIn{from{transform:scale(0) rotate(-20deg);opacity:0;}to{transform:scale(1) rotate(0);opacity:1;}}
+  .waiting-next{text-align:center;padding:20px;color:rgba(245,234,208,0.4);font-size:15px;animation:blink 2s infinite;}
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+  .arabesque{text-align:center;font-size:24px;color:rgba(201,168,76,0.3);letter-spacing:8px;}
+  .confetti-piece{position:fixed;width:8px;height:8px;pointer-events:none;z-index:1000;border-radius:2px;animation:confettiFall linear forwards;}
+  @keyframes confettiFall{0%{transform:translateY(-20px) rotate(0deg);opacity:1;}100%{transform:translateY(100vh) rotate(720deg);opacity:0;}}
+  .hidden{display:none!important;}
 </style>
 </head>
 <body>
 <div class="app">
-
   <header>
     <div class="logo">
       <span class="logo-icon">🌙</span>
@@ -177,60 +125,42 @@
     </div>
   </header>
 
-  <!-- ── STEP 1: ENTER ROOM CODE + NAME ── -->
+  <!-- STEP 1 -->
   <div id="step-room">
     <div class="lantern">🪔</div>
-    <h1 class="step-title">مسابقة جوري الرمضانية</h1>
+    <h1 class="step-title">مسابقة رمضان المبارك</h1>
     <p class="step-sub">أدخل رمز الغرفة واسمك للانضمام إلى اللعبة</p>
-
     <div class="room-enter-box">
       <div class="room-enter-label">رمز الغرفة</div>
-      <input
-        class="room-code-input"
-        id="room-code-input"
-        maxlength="6"
-        placeholder="XXXX"
-        oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'')"
-        onkeydown="if(event.key==='Enter') focusName()"
-      >
-      <input
-        class="name-input"
-        id="player-name-input"
-        maxlength="20"
-        placeholder="اسمك..."
-        onkeydown="if(event.key==='Enter') joinGame()"
-      >
-      <button class="btn-gold" onclick="joinGame()">انضم إلى الغرفة ✦</button>
+      <input class="room-code-input" id="room-code-input" maxlength="6" placeholder="XXXX" oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'')" onkeydown="if(event.key==='Enter')document.getElementById('player-name-input').focus()">
+      <input class="name-input" id="player-name-input" maxlength="20" placeholder="اسمك..." onkeydown="if(event.key==='Enter')joinGame()">
+      <button class="btn-gold" id="join-btn" onclick="joinGame()">انضم إلى الغرفة ✦</button>
       <div id="error-msg" class="error-msg hidden"></div>
     </div>
   </div>
 
-  <!-- ── STEP 2: LOBBY ── -->
+  <!-- LOBBY -->
   <div id="step-lobby">
     <div class="lantern">🪔</div>
     <h2 style="font-family:'Amiri',serif;font-size:clamp(22px,4vw,40px);color:var(--gold-light);">في انتظار بدء اللعبة</h2>
     <p style="color:rgba(245,234,208,0.5);font-size:16px;">سيبدأ المضيف قريباً إن شاء الله</p>
-
     <div class="join-code-box">
       <div class="join-code-label">رمز الغرفة</div>
       <div class="join-code" id="lobby-room-code">——</div>
     </div>
-
     <div class="my-name-badge">
       <span style="opacity:0.5">— منضم</span>
       <span id="lobby-name-display"></span>
       <span>🌟</span>
     </div>
-
     <div class="ornament"><span class="ornament-line"></span><span>❖</span><span class="ornament-line"></span></div>
-
     <div>
       <div style="font-size:14px;color:rgba(245,234,208,0.4);margin-bottom:12px;">اللاعبون المنضمون</div>
       <div class="players-waiting" id="players-waiting-list"></div>
     </div>
   </div>
 
-  <!-- ── GAME SCREEN ── -->
+  <!-- GAME -->
   <div id="game-screen">
     <div class="question-card">
       <div class="q-meta">
@@ -246,16 +176,14 @@
       <div class="question-text" id="question-text">جارٍ تحميل السؤال...</div>
       <div class="answers-grid" id="answers-grid"></div>
     </div>
-
     <div class="waiting-next hidden" id="waiting-next">✦ &nbsp; في انتظار السؤال التالي... &nbsp; ✦</div>
-
     <div class="leaderboard-card">
       <div class="lb-header"><span>لوحة المتصدرين</span><span>🏆</span></div>
       <div id="leaderboard-list"></div>
     </div>
   </div>
 
-  <!-- ── RESULTS ── -->
+  <!-- RESULTS -->
   <div id="results-screen">
     <div class="stars" id="result-stars">⭐⭐⭐</div>
     <h1 class="results-title">الحمد لله!</h1>
@@ -271,129 +199,118 @@
     <div class="arabesque">✦ ❖ ✦</div>
     <p style="color:rgba(245,234,208,0.4);font-size:17px;">رمضان كريم 🌙</p>
   </div>
-
 </div>
 
 <div class="points-toast" id="points-toast">
-  <div id="toast-points">+٥٠٠٠</div>
+  <div id="toast-points">+5,000</div>
   <div class="points-sub" id="toast-msg">نقطة</div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-// ════════════════════════════════════════════════════
-//  ROOM-AWARE STATE
-// ════════════════════════════════════════════════════
-const ROOM_PREFIX = 'rmdroom_';
+const SUPABASE_URL = 'https://mbtbyseaivvpmovwlucd.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1idGJ5c2VhaXZ2cG1vdndsdWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE4NjUxODksImV4cCI6MjA4NzQ0MTE4OX0.TJ8NGFMyOeQW61QIcJGgqNjnI9Kr5ubdUi8fifKwN5I';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-let myName        = '';
-let myRoomCode    = '';
-let myScore       = 0;
-let answered      = false;
-let timerInterval = null;
-let timeLeft      = 10;
-let questionStartTime = 0;
-let currentQIndex = -1;
+const AR=['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+function toAr(n){return String(n).replace(/[0-9]/g,d=>AR[d]);}
 
-const AR = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
-function toAr(n){ return String(n).replace(/[0-9]/g, d => AR[d]); }
-
-function roomKey(code){ return ROOM_PREFIX + code; }
-function getRoom(code){
-  try{ return JSON.parse(localStorage.getItem(roomKey(code))); }
-  catch{ return null; }
-}
-function setRoom(code, s){ localStorage.setItem(roomKey(code), JSON.stringify(s)); }
+let myName='', myRoomCode='', myScore=0;
+let answered=false, timerInterval=null;
+let timeLeft=10, questionStartTime=0;
+let currentQIndex=-1, lastPhase='';
+let realtimeChannel=null;
 
 // ── JOIN ──
-function focusName(){
-  document.getElementById('player-name-input').focus();
-}
-
-function joinGame(){
-  const codeInput = document.getElementById('room-code-input');
-  const nameInput = document.getElementById('player-name-input');
-  const errEl     = document.getElementById('error-msg');
-  const code = codeInput.value.trim().toUpperCase();
-  const name = nameInput.value.trim();
-
+async function joinGame(){
+  const codeInput=document.getElementById('room-code-input');
+  const nameInput=document.getElementById('player-name-input');
+  const errEl=document.getElementById('error-msg');
+  const btn=document.getElementById('join-btn');
+  const code=codeInput.value.trim().toUpperCase();
+  const name=nameInput.value.trim();
   errEl.classList.add('hidden');
+  if(!code){showError('الرجاء إدخال رمز الغرفة');return;}
+  if(!name){showError('الرجاء إدخال اسمك');nameInput.focus();return;}
 
-  if(!code){ showError('الرجاء إدخال رمز الغرفة'); return; }
-  if(!name){ showError('الرجاء إدخال اسمك'); nameInput.focus(); return; }
+  btn.disabled=true;btn.textContent='جارٍ الاتصال...';
 
-  const room = getRoom(code);
-  if(!room){ showError(`لا توجد غرفة بالرمز "${code}" — تحقق من الرمز`); return; }
-  if(room.phase === 'ended'){ showError('هذه الغرفة انتهت. اطلب من المضيف إعادة التشغيل.'); return; }
+  // Fetch room from Supabase
+  const {data,error}=await sb.from('rooms').select('state').eq('code',code).single();
+  if(error||!data){showError(`لا توجد غرفة بالرمز "${code}"`);btn.disabled=false;btn.textContent='انضم إلى الغرفة ✦';return;}
+  const room=data.state;
+  if(room.phase==='ended'){showError('هذه الغرفة انتهت. اطلب من المضيف إعادة التشغيل.');btn.disabled=false;btn.textContent='انضم إلى الغرفة ✦';return;}
 
-  myRoomCode = code;
-  myName     = name;
+  myRoomCode=code; myName=name;
 
   // Register player
-  room.players[myName] = room.players[myName] || 0;
-  setRoom(myRoomCode, room);
+  room.players[myName]=room.players[myName]||0;
+  await sb.from('rooms').update({state:room,updated_at:new Date().toISOString()}).eq('code',code);
 
   // Show lobby
-  document.getElementById('step-room').style.display = 'none';
-  document.getElementById('step-lobby').style.display = 'flex';
-  document.getElementById('lobby-room-code').textContent = myRoomCode;
-  document.getElementById('lobby-name-display').textContent = myName;
-  document.getElementById('badge-room-code').textContent = myRoomCode;
-  document.getElementById('room-badge').style.display = 'flex';
+  document.getElementById('step-room').style.display='none';
+  document.getElementById('step-lobby').style.display='flex';
+  document.getElementById('lobby-room-code').textContent=myRoomCode;
+  document.getElementById('lobby-name-display').textContent=myName;
+  document.getElementById('badge-room-code').textContent=myRoomCode;
+  document.getElementById('room-badge').style.display='flex';
 
   renderWaitingPlayers(room.players);
-
-  window.addEventListener('storage', onStateChange);
-  setInterval(syncWithState, 500);
+  subscribeToRoom(code);
 }
 
 function showError(msg){
-  const el = document.getElementById('error-msg');
-  el.textContent = msg;
-  el.classList.remove('hidden');
+  const el=document.getElementById('error-msg');
+  el.textContent=msg;el.classList.remove('hidden');
+  const btn=document.getElementById('join-btn');
+  btn.disabled=false;btn.textContent='انضم إلى الغرفة ✦';
 }
 
-// ── SYNC ──
-function syncWithState(){
-  if(!myRoomCode) return;
-  const room = getRoom(myRoomCode);
-  if(!room) return;
+// ── REALTIME ──
+function subscribeToRoom(code){
+  if(realtimeChannel) sb.removeChannel(realtimeChannel);
+  realtimeChannel=sb.channel('player-room-'+code)
+    .on('postgres_changes',{event:'UPDATE',schema:'public',table:'rooms',filter:`code=eq.${code}`},
+      payload=>{ handleRoomUpdate(payload.new.state); })
+    .subscribe();
+}
 
-  if(room.phase === 'lobby'){
-    renderWaitingPlayers(room.players);
-  } else if(room.phase === 'question'){
+function handleRoomUpdate(room){
+  if(!room) return;
+  const players=room.players||{};
+
+  if(room.phase==='lobby'){
+    renderWaitingPlayers(players);
+  } else if(room.phase==='question'){
     showGameScreen();
-    if(room.qIndex !== currentQIndex){
-      currentQIndex = room.qIndex;
-      answered = false;
+    if(room.qIndex!==currentQIndex){
+      currentQIndex=room.qIndex;
+      answered=false;
       renderQuestion(room);
     } else if(room.showAnswer){
       revealAnswers(room.correctAnswer);
     }
-    renderLeaderboard(room.players, 'leaderboard-list');
-  } else if(room.phase === 'ended'){
-    showResultsScreen(room.players);
+    renderLeaderboard(players,'leaderboard-list');
+  } else if(room.phase==='ended'){
+    showResultsScreen(players);
   }
+
+  lastPhase=room.phase;
 }
 
-function onStateChange(e){
-  if(e && e.key && e.key !== roomKey(myRoomCode)) return;
-  syncWithState();
-}
-
-// ── RENDER WAITING ──
+// ── WAITING ──
 function renderWaitingPlayers(ps){
-  const list = document.getElementById('players-waiting-list');
+  const list=document.getElementById('players-waiting-list');
   if(!list) return;
   list.innerHTML='';
   Object.keys(ps).forEach(n=>{
     const chip=document.createElement('div');
-    chip.className='player-chip';
-    chip.textContent=n;
+    chip.className='player-chip';chip.textContent=n;
     list.appendChild(chip);
   });
 }
 
-// ── GAME SCREEN ──
+// ── GAME ──
 function showGameScreen(){
   document.getElementById('step-room').style.display='none';
   document.getElementById('step-lobby').style.display='none';
@@ -406,7 +323,6 @@ function renderQuestion(room){
   document.getElementById('q-number').textContent=`السؤال ${toAr(room.qIndex+1)} من ${toAr(room.totalQ)}`;
   document.getElementById('question-text').textContent=room.currentQ.question;
   document.getElementById('waiting-next').classList.add('hidden');
-
   const grid=document.getElementById('answers-grid');
   grid.innerHTML='';
   const letters=['أ','ب','ج','د'];
@@ -417,24 +333,18 @@ function renderQuestion(room){
     btn.onclick=()=>submitAnswer(i,room);
     grid.appendChild(btn);
   });
-  startTimer(room);
+  startTimer();
 }
 
-function startTimer(room){
+function startTimer(){
   clearInterval(timerInterval);
-  timeLeft=10;
-  questionStartTime = Date.now();
+  timeLeft=10;questionStartTime=Date.now();
   updateTimerUI(10);
   timerInterval=setInterval(()=>{
-    timeLeft--;
-    updateTimerUI(timeLeft);
+    timeLeft--;updateTimerUI(timeLeft);
     if(timeLeft<=0){
       clearInterval(timerInterval);
-      if(!answered){
-        disableAnswers();
-        showPointsToast(0,'⏰ انتهى الوقت!');
-        document.getElementById('waiting-next').classList.remove('hidden');
-      }
+      if(!answered){disableAnswers();showPointsToast(0,'⏰ انتهى الوقت!');document.getElementById('waiting-next').classList.remove('hidden');}
     }
   },1000);
 }
@@ -449,30 +359,35 @@ function updateTimerUI(t){
   text.textContent=toAr(t);
 }
 
-function submitAnswer(index, room){
+async function submitAnswer(index,room){
   if(answered) return;
   answered=true;
   clearInterval(timerInterval);
   const correct=index===room.currentQ.correctIndex;
-  // Smooth scoring: 10000 pts if instant, falls linearly to 100 pts at 10s
-  const elapsed = (Date.now() - questionStartTime) / 1000; // seconds elapsed
-  const pts = correct ? Math.max(100, Math.round(10000 - (9900 / 10) * elapsed)) : 0;
+  const elapsed=(Date.now()-questionStartTime)/1000;
+  const pts=correct?Math.max(100,Math.round(10000-(9900/10)*elapsed)):0;
+
   if(correct){
     myScore+=pts;
-    const r=getRoom(myRoomCode);
-    r.players[myName]=(r.players[myName]||0)+pts;
-    setRoom(myRoomCode,r);
+    // Update score in Supabase
+    const {data}=await sb.from('rooms').select('state').eq('code',myRoomCode).single();
+    if(data){
+      const s=data.state;
+      s.players[myName]=(s.players[myName]||0)+pts;
+      await sb.from('rooms').update({state:s,updated_at:new Date().toISOString()}).eq('code',myRoomCode);
+    }
   }
+
   document.querySelectorAll('.answer-btn').forEach((btn,i)=>{
     btn.disabled=true;
     if(i===room.currentQ.correctIndex) btn.classList.add('correct');
     else if(i===index&&!correct) btn.classList.add('wrong');
   });
-  showPointsToast(pts, correct?(pts>=9900?'🌟 ممتاز!':'نقطة مكتسبة'):'❌ إجابة خاطئة');
+  showPointsToast(pts,correct?(pts>=9900?'🌟 ممتاز!':'نقطة مكتسبة'):'❌ إجابة خاطئة');
   document.getElementById('waiting-next').classList.remove('hidden');
 }
 
-function disableAnswers(){ document.querySelectorAll('.answer-btn').forEach(b=>b.disabled=true); }
+function disableAnswers(){document.querySelectorAll('.answer-btn').forEach(b=>b.disabled=true);}
 
 function revealAnswers(correctIndex){
   document.querySelectorAll('.answer-btn').forEach((btn,i)=>{
@@ -481,15 +396,15 @@ function revealAnswers(correctIndex){
   });
 }
 
-function showPointsToast(pts, msg){
+function showPointsToast(pts,msg){
   const toast=document.getElementById('points-toast');
-  document.getElementById('toast-points').textContent=pts>0?`+${pts.toLocaleString('en-US')}`:toAr(0);
+  document.getElementById('toast-points').textContent=pts>0?`+${pts.toLocaleString('en-US')}`:'0';
   document.getElementById('toast-msg').textContent=msg;
   toast.className='points-toast show';
-  setTimeout(()=>{ toast.className='points-toast hide'; setTimeout(()=>toast.className='points-toast',400); },2000);
+  setTimeout(()=>{toast.className='points-toast hide';setTimeout(()=>toast.className='points-toast',400);},2000);
 }
 
-function renderLeaderboard(ps, containerId){
+function renderLeaderboard(ps,containerId){
   const container=document.getElementById(containerId);
   if(!container) return;
   const sorted=Object.entries(ps).sort((a,b)=>b[1]-a[1]);
@@ -539,9 +454,9 @@ function launchConfetti(){
     setTimeout(()=>{
       const el=document.createElement('div');
       el.className='confetti-piece';
-      el.style.left=Math.random()*100+'vw'; el.style.top='-10px';
+      el.style.left=Math.random()*100+'vw';el.style.top='-10px';
       el.style.background=colors[Math.floor(Math.random()*colors.length)];
-      el.style.width=(Math.random()*8+4)+'px'; el.style.height=el.style.width;
+      el.style.width=(Math.random()*8+4)+'px';el.style.height=el.style.width;
       el.style.animationDuration=(Math.random()*2+2)+'s';
       el.style.animationDelay=Math.random()*0.5+'s';
       document.body.appendChild(el);
