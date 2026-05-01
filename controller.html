@@ -405,31 +405,173 @@ function newRoomState(code){
 
 function getDefaultQuestions(){
   return [
-    // Arabic questions
-    {question:'ما هو الكوكب المعروف بكوكب الحلقات؟',answers:['المريخ','زحل','المشتري','نبتون'],correctIndex:1},
-    {question:'ما هي عاصمة إيطاليا؟',answers:['روما','ميلانو','نابولي','فلورنسا'],correctIndex:0},
-    {question:'كم عدد ألوان قوس قزح؟',answers:['5','6','7','8'],correctIndex:2},
-    {question:'من هو مكتشف الجاذبية الأرضية؟',answers:['أينشتاين','نيوتن','غاليليو','تسلا'],correctIndex:1},
-    {question:'ما هو أسرع طائر في العالم؟',answers:['النسر','الصقر الشاهين','البومة','الحمام'],correctIndex:1},
-    {question:'ما هي العملة الرسمية في المملكة المتحدة؟',answers:['اليورو','الدولار','الجنيه الإسترليني','الفرنك'],correctIndex:2},
-    {question:'كم عدد أسنان الإنسان البالغ عادة؟',answers:['28','30','32','36'],correctIndex:2},
-    {question:'ما هو الغاز الأكثر وفرة في الغلاف الجوي؟',answers:['الأكسجين','النيتروجين','ثاني أكسيد الكربون','الهيدروجين'],correctIndex:1},
-    {question:'ما هي أكبر صحراء حارة في العالم؟',answers:['الصحراء الكبرى','صحراء الربع الخالي','صحراء غوبي','صحراء كالاهاري'],correctIndex:0},
-    {question:'من هو أول خليفة في الإسلام؟',answers:['عمر بن الخطاب','علي بن أبي طالب','أبو بكر الصديق','عثمان بن عفان'],correctIndex:2},
+    {question:'ما هو أكبر محيط في العالم؟',answers:['الأطلسي','الهندي','الهادئ','المتجمد'],correctIndex:2},
+    {question:'كم عدد كواكب المجموعة الشمسية؟',answers:['7','8','9','10'],correctIndex:1},
+    {question:'ما هي عاصمة ألمانيا؟',answers:['ميونخ','برلين','هامبورغ','فرانكفورت'],correctIndex:1},
+    {question:'ما هو الحيوان الذي ينام واقفاً؟',answers:['الحصان','الأسد','الدب','الثعلب'],correctIndex:0},
+    {question:'من كتب "روميو وجولييت"؟',answers:['شكسبير','ديكنز','تولستوي','هوغو'],correctIndex:0},
 
-    // English questions
-    {question:'What is the boiling point of water at sea level?',answers:['90°C','95°C','100°C','110°C'],correctIndex:2},
-    {question:'Which organ pumps blood through the human body?',answers:['Lungs','Brain','Heart','Liver'],correctIndex:2},
-    {question:'Which country is known as the Land of the Rising Sun?',answers:['China','Japan','Thailand','South Korea'],correctIndex:1},
-    {question:'How many players are on a standard soccer team on the field?',answers:['9','10','11','12'],correctIndex:2},
-    {question:'Which metal is liquid at room temperature?',answers:['Iron','Mercury','Aluminum','Copper'],correctIndex:1},
-    {question:'What is the largest mammal?',answers:['Elephant','Blue Whale','Giraffe','Hippopotamus'],correctIndex:1},
-    {question:'Which continent is the Sahara Desert located in?',answers:['Asia','Africa','Australia','South America'],correctIndex:1},
-    {question:'What is the main language spoken in Brazil?',answers:['Spanish','Portuguese','French','English'],correctIndex:1},
-    {question:'Which instrument has keys, pedals, and strings?',answers:['Guitar','Violin','Piano','Drum'],correctIndex:2},
-    {question:'What is H2O commonly known as?',answers:['Salt','Oxygen','Water','Hydrogen'],correctIndex:2},
+    {question:'What is the fastest land animal?',answers:['Lion','Cheetah','Horse','Tiger'],correctIndex:1},
+    {question:'What is the capital of Spain?',answers:['Madrid','Barcelona','Seville','Valencia'],correctIndex:0},
+    {question:'How many bones are in the human body?',answers:['200','206','210','198'],correctIndex:1},
+    {question:'Which planet is closest to the sun?',answers:['Venus','Earth','Mercury','Mars'],correctIndex:2},
+    {question:'What is the largest continent?',answers:['Africa','Asia','Europe','Antarctica'],correctIndex:1},
+
+    {question:'ما هو الغاز الذي نتنفسه؟',answers:['الأكسجين','الهيدروجين','النيتروجين','الهيليوم'],correctIndex:0},
+    {question:'كم عدد أيام السنة؟',answers:['360','365','366','364'],correctIndex:1},
+    {question:'ما هو لون الزمرد؟',answers:['أحمر','أزرق','أخضر','أصفر'],correctIndex:2},
+    {question:'ما هي عاصمة مصر؟',answers:['الإسكندرية','القاهرة','الجيزة','الأقصر'],correctIndex:1},
+    {question:'من هو مخترع الهاتف؟',answers:['أديسون','غراهام بيل','تسلا','نيوتن'],correctIndex:1},
+
+    {question:'What is 5 x 6?',answers:['30','25','35','40'],correctIndex:0},
+    {question:'Which ocean is the smallest?',answers:['Arctic','Indian','Atlantic','Pacific'],correctIndex:0},
+    {question:'Which animal is known as King of the Jungle?',answers:['Tiger','Lion','Leopard','Wolf'],correctIndex:1},
+    {question:'What color are bananas?',answers:['Red','Yellow','Blue','Green'],correctIndex:1},
+    {question:'How many days are in a week?',answers:['5','6','7','8'],correctIndex:2},
   ];
 }
+
+function getDefaultQuestions1(){
+  return [
+    {question:'ما هو الكوكب الأحمر؟',answers:['الأرض','المريخ','المشتري','زحل'],correctIndex:1},
+    {question:'كم عدد حروف اللغة العربية؟',answers:['26','28','30','24'],correctIndex:1},
+    {question:'ما هي عاصمة اليابان؟',answers:['سيول','طوكيو','بكين','بانكوك'],correctIndex:1},
+    {question:'ما هو أطول حيوان في العالم؟',answers:['الفيل','الزرافة','الحوت','الحصان'],correctIndex:1},
+    {question:'من رسم الموناليزا؟',answers:['بيكاسو','دافنشي','فان جوخ','مونيه'],correctIndex:1},
+
+    {question:'What is the largest planet?',answers:['Earth','Mars','Jupiter','Saturn'],correctIndex:2},
+    {question:'What is the capital of Canada?',answers:['Toronto','Ottawa','Vancouver','Montreal'],correctIndex:1},
+    {question:'How many continents are there?',answers:['5','6','7','8'],correctIndex:2},
+    {question:'Which gas do plants need?',answers:['Oxygen','Carbon Dioxide','Nitrogen','Hydrogen'],correctIndex:1},
+    {question:'What is 12 x 12?',answers:['144','124','134','154'],correctIndex:0},
+
+    {question:'ما هو أسرع حيوان في الماء؟',answers:['القرش','الدلفين','سمكة أبو شراع','الحوت'],correctIndex:2},
+    {question:'ما هي عاصمة السعودية؟',answers:['جدة','الرياض','الدمام','مكة'],correctIndex:1},
+    {question:'كم عدد الكواكب الغازية؟',answers:['2','3','4','5'],correctIndex:2},
+    {question:'ما هو المعدن السائل؟',answers:['الحديد','الزئبق','النحاس','الذهب'],correctIndex:1},
+    {question:'ما هي أكبر قارة؟',answers:['أفريقيا','آسيا','أوروبا','أمريكا'],correctIndex:1},
+
+    {question:'Which animal barks?',answers:['Cat','Dog','Cow','Sheep'],correctIndex:1},
+    {question:'What is the square root of 81?',answers:['7','8','9','10'],correctIndex:2},
+    {question:'Which country is in Europe?',answers:['Brazil','Germany','India','Japan'],correctIndex:1},
+    {question:'How many hours in a day?',answers:['24','12','36','48'],correctIndex:0},
+    {question:'Which is a fruit?',answers:['Carrot','Apple','Potato','Onion'],correctIndex:1},
+  ];
+}
+
+function getDefaultQuestions2(){
+  return [
+    {question:'ما هو أطول نهر في العالم؟',answers:['الأمازون','النيل','اليانغتسي','الدانوب'],correctIndex:1},
+    {question:'ما هي عاصمة تركيا؟',answers:['إسطنبول','أنقرة','إزمير','بورصة'],correctIndex:1},
+    {question:'كم عدد ألوان قوس قزح؟',answers:['5','6','7','8'],correctIndex:2},
+    {question:'ما هو الحيوان الأكبر؟',answers:['الفيل','الحوت الأزرق','الزرافة','القرش'],correctIndex:1},
+    {question:'ما هو الغاز الأكثر في الهواء؟',answers:['الأكسجين','النيتروجين','الهيدروجين','الهيليوم'],correctIndex:1},
+
+    {question:'What is the capital of Italy?',answers:['Rome','Milan','Venice','Naples'],correctIndex:0},
+    {question:'Which planet has rings?',answers:['Earth','Mars','Saturn','Venus'],correctIndex:2},
+    {question:'How many legs does a spider have?',answers:['6','8','10','12'],correctIndex:1},
+    {question:'What is H2O?',answers:['Salt','Water','Oxygen','Hydrogen'],correctIndex:1},
+    {question:'Which is a mammal?',answers:['Shark','Dolphin','Octopus','Tuna'],correctIndex:1},
+
+    {question:'ما هي عاصمة العراق؟',answers:['بغداد','البصرة','الموصل','أربيل'],correctIndex:0},
+    {question:'كم عدد الكواكب؟',answers:['7','8','9','10'],correctIndex:1},
+    {question:'ما لون السماء؟',answers:['أخضر','أزرق','أحمر','أصفر'],correctIndex:1},
+    {question:'ما هو الحيوان الأبطأ؟',answers:['سلحفاة','أرنب','غزال','حصان'],correctIndex:0},
+    {question:'من كتب هاملت؟',answers:['شكسبير','ديكنز','هوغو','تولستوي'],correctIndex:0},
+
+    {question:'What is 10 x 10?',answers:['100','90','110','120'],correctIndex:0},
+    {question:'Which continent is Australia in?',answers:['Europe','Asia','Australia','Africa'],correctIndex:2},
+    {question:'What color is grass?',answers:['Blue','Green','Red','Yellow'],correctIndex:1},
+    {question:'How many wheels on a car?',answers:['2','3','4','5'],correctIndex:2},
+    {question:'Which is a bird?',answers:['Dog','Cat','Eagle','Fish'],correctIndex:2},
+  ];
+}
+
+function getDefaultQuestions3(){
+  return [
+    {question:'ما هي عاصمة المغرب؟',answers:['الرباط','الدار البيضاء','مراكش','طنجة'],correctIndex:0},
+    {question:'كم عدد الحواس؟',answers:['3','4','5','6'],correctIndex:2},
+    {question:'ما هو الكوكب الأزرق؟',answers:['الأرض','المريخ','زحل','عطارد'],correctIndex:0},
+    {question:'ما هو الحيوان الذي يبيض؟',answers:['قط','كلب','دجاجة','حصان'],correctIndex:2},
+    {question:'ما هو أصغر كوكب؟',answers:['عطارد','المريخ','الأرض','الزهرة'],correctIndex:0},
+
+    {question:'What is the capital of Egypt?',answers:['Cairo','Alexandria','Giza','Luxor'],correctIndex:0},
+    {question:'How many days in a year?',answers:['365','360','366','364'],correctIndex:0},
+    {question:'Which is a vegetable?',answers:['Apple','Carrot','Banana','Mango'],correctIndex:1},
+    {question:'What is 7 x 8?',answers:['54','56','58','60'],correctIndex:1},
+    {question:'Which animal meows?',answers:['Dog','Cat','Cow','Horse'],correctIndex:1},
+
+    {question:'ما هي عاصمة الأردن؟',answers:['عمان','الزرقاء','إربد','العقبة'],correctIndex:0},
+    {question:'كم عدد شهور السنة؟',answers:['10','11','12','13'],correctIndex:2},
+    {question:'ما هو الحيوان الطائر؟',answers:['حصان','نسر','أسد','فيل'],correctIndex:1},
+    {question:'ما هو لون الدم؟',answers:['أزرق','أحمر','أخضر','أصفر'],correctIndex:1},
+    {question:'من مكتشف أمريكا؟',answers:['كولومبوس','نيوتن','أينشتاين','تسلا'],correctIndex:0},
+
+    {question:'Which planet is hot?',answers:['Mars','Venus','Earth','Jupiter'],correctIndex:1},
+    {question:'What is 9 x 9?',answers:['81','72','90','99'],correctIndex:0},
+    {question:'Which is a drink?',answers:['Bread','Milk','Rice','Egg'],correctIndex:1},
+    {question:'How many fingers?',answers:['8','10','12','6'],correctIndex:1},
+    {question:'Which is a color?',answers:['Dog','Blue','Car','Chair'],correctIndex:1},
+  ];
+}
+
+function getDefaultQuestions4(){
+  return [
+    {question:'ما هي عاصمة السودان؟',answers:['الخرطوم','دارفور','كسلا','مدني'],correctIndex:0},
+    {question:'كم عدد الأرجل عند العنكبوت؟',answers:['6','8','10','4'],correctIndex:1},
+    {question:'ما هو الحيوان البحري؟',answers:['أسد','سمكة','نمر','ذئب'],correctIndex:1},
+    {question:'ما هو لون الشمس؟',answers:['أصفر','أزرق','أخضر','أحمر'],correctIndex:0},
+    {question:'ما هو الحيوان الأليف؟',answers:['أسد','نمر','كلب','ذئب'],correctIndex:2},
+
+    {question:'What is the capital of Germany?',answers:['Berlin','Munich','Frankfurt','Hamburg'],correctIndex:0},
+    {question:'What is 6 x 7?',answers:['42','36','48','40'],correctIndex:0},
+    {question:'Which is a fruit?',answers:['Potato','Orange','Onion','Garlic'],correctIndex:1},
+    {question:'Which animal swims?',answers:['Bird','Fish','Dog','Cat'],correctIndex:1},
+    {question:'How many eyes do humans have?',answers:['1','2','3','4'],correctIndex:1},
+
+    {question:'ما هي عاصمة الجزائر؟',answers:['الجزائر','وهران','قسنطينة','عنابة'],correctIndex:0},
+    {question:'كم عدد الكواكب الصخرية؟',answers:['2','3','4','5'],correctIndex:2},
+    {question:'ما هو الحيوان المفترس؟',answers:['أرنب','غزال','أسد','خروف'],correctIndex:2},
+    {question:'ما هو لون الحليب؟',answers:['أسود','أبيض','أحمر','أزرق'],correctIndex:1},
+    {question:'ما هو الحيوان الكبير؟',answers:['فيل','فأر','قط','أرنب'],correctIndex:0},
+
+    {question:'Which is cold?',answers:['Fire','Ice','Steam','Sun'],correctIndex:1},
+    {question:'What is 8 x 5?',answers:['40','35','45','50'],correctIndex:0},
+    {question:'Which is a shape?',answers:['Circle','Dog','Car','Tree'],correctIndex:0},
+    {question:'How many legs does a dog have?',answers:['2','4','6','8'],correctIndex:1},
+    {question:'Which is sweet?',answers:['Sugar','Salt','Pepper','Spice'],correctIndex:0},
+  ];
+}
+
+function getDefaultQuestions5(){
+  return [
+    {question:'ما هي عاصمة تونس؟',answers:['تونس','سوسة','صفاقس','بنزرت'],correctIndex:0},
+    {question:'كم عدد أيام الأسبوع؟',answers:['5','6','7','8'],correctIndex:2},
+    {question:'ما هو الحيوان السريع؟',answers:['سلحفاة','فهد','بقرة','خروف'],correctIndex:1},
+    {question:'ما هو لون البحر؟',answers:['أحمر','أزرق','أخضر','أصفر'],correctIndex:1},
+    {question:'ما هو الحيوان الصغير؟',answers:['فيل','فأر','حصان','أسد'],correctIndex:1},
+
+    {question:'What is the capital of France?',answers:['Paris','Lyon','Nice','Marseille'],correctIndex:0},
+    {question:'What is 3 x 3?',answers:['6','9','12','3'],correctIndex:1},
+    {question:'Which is hot?',answers:['Ice','Fire','Water','Air'],correctIndex:1},
+    {question:'Which animal flies?',answers:['Dog','Cat','Bird','Fish'],correctIndex:2},
+    {question:'How many ears?',answers:['1','2','3','4'],correctIndex:1},
+
+    {question:'ما هي عاصمة قطر؟',answers:['الدوحة','الريان','الوكرة','الخور'],correctIndex:0},
+    {question:'كم عدد الفصول؟',answers:['2','3','4','5'],correctIndex:2},
+    {question:'ما هو الحيوان القوي؟',answers:['أسد','أرنب','فأر','خروف'],correctIndex:0},
+    {question:'ما هو لون التفاح الشائع؟',answers:['أزرق','أحمر','أسود','بنفسجي'],correctIndex:1},
+    {question:'ما هو الحيوان الذي يطير؟',answers:['حصان','طائر','سمكة','قطة'],correctIndex:1},
+
+    {question:'Which is fast?',answers:['Snail','Cheetah','Turtle','Cow'],correctIndex:1},
+    {question:'What is 4 x 4?',answers:['16','12','20','14'],correctIndex:0},
+    {question:'Which is a liquid?',answers:['Water','Stone','Iron','Wood'],correctIndex:0},
+    {question:'How many noses?',answers:['1','2','3','4'],correctIndex:0},
+    {question:'Which is a color?',answers:['Red','Dog','Chair','Book'],correctIndex:0},
+  ];
+}
+
+
 
 // ══════════════════════════════════════════
 //  INIT
