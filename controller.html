@@ -3,90 +3,94 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مسابقة رمضان — المتحكم</title>
+<title>مسابقة الأزهار — المتحكم</title>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --midnight:#0a0e1a; --navy:#0f1729;
-    --gold:#c9a84c; --gold-light:#f0d080; --gold-dim:#8a6f2e;
-    --cream:#f5ead0; --red:#c0392b; --green:#1a9c4f;
-    --card-bg:rgba(15,23,41,0.95);
+    --midnight:#1a0a1e; --navy:#2d0f3a;
+    --gold:#e86bac; --gold-light:#f9a8d4; --gold-dim:#9d3a6e;
+    --cream:#fdf2f8; --red:#be123c; --green:#16a34a;
+    --card-bg:rgba(45,15,58,0.95);
+    --petal1:#f472b6; --petal2:#a855f7; --petal3:#fb923c; --petal4:#34d399;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{background:var(--midnight);color:var(--cream);font-family:'Tajawal',sans-serif;min-height:100vh;direction:rtl;}
-  body::before{content:'';position:fixed;inset:0;background-image:repeating-linear-gradient(60deg,transparent,transparent 40px,rgba(201,168,76,0.02) 40px,rgba(201,168,76,0.02) 41px),repeating-linear-gradient(-60deg,transparent,transparent 40px,rgba(201,168,76,0.02) 40px,rgba(201,168,76,0.02) 41px);pointer-events:none;z-index:0;}
+  body{background:linear-gradient(135deg,#1a0a1e 0%,#2d0f3a 50%,#1a0a1e 100%);color:var(--cream);font-family:'Tajawal',sans-serif;min-height:100vh;direction:rtl;}
+  body::before{content:'';position:fixed;inset:0;background-image:
+    radial-gradient(circle at 10% 20%, rgba(244,114,182,0.06) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(168,85,247,0.06) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(251,146,60,0.04) 0%, transparent 50%);
+    pointer-events:none;z-index:0;}
   .app{position:relative;z-index:1;display:flex;flex-direction:column;min-height:100vh;}
 
-  /* LOCK */
-  #lock-screen{position:fixed;inset:0;z-index:9999;background:var(--midnight);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:28px;padding:32px;text-align:center;}
-  #lock-screen::after{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(201,168,76,0.07) 0%,transparent 70%);pointer-events:none;}
-  .lock-box{position:relative;z-index:1;background:rgba(15,23,41,0.95);border:1px solid rgba(201,168,76,0.25);border-radius:24px;padding:40px 44px;display:flex;flex-direction:column;align-items:center;gap:20px;width:100%;max-width:400px;}
-  .lock-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.4),transparent);border-radius:24px 24px 0 0;}
-  .lock-icon{font-size:52px;filter:drop-shadow(0 0 16px rgba(201,168,76,0.4));}
+  #lock-screen{position:fixed;inset:0;z-index:9999;background:linear-gradient(135deg,#1a0a1e,#2d0f3a);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:28px;padding:32px;text-align:center;}
+  #lock-screen::after{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(232,107,172,0.12) 0%,transparent 70%);pointer-events:none;}
+  .lock-box{position:relative;z-index:1;background:rgba(45,15,58,0.95);border:1px solid rgba(232,107,172,0.3);border-radius:24px;padding:40px 44px;display:flex;flex-direction:column;align-items:center;gap:20px;width:100%;max-width:400px;}
+  .lock-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(249,168,212,0.5),transparent);border-radius:24px 24px 0 0;}
+  .lock-icon{font-size:52px;filter:drop-shadow(0 0 16px rgba(232,107,172,0.5));}
   .lock-title{font-family:'Amiri',serif;font-size:28px;color:var(--gold-light);}
-  .lock-sub{font-size:14px;color:rgba(245,234,208,0.4);margin-top:-8px;}
-  .lock-input{background:rgba(201,168,76,0.06);border:2px solid rgba(201,168,76,0.25);border-radius:12px;padding:14px 20px;color:var(--cream);font-family:'Tajawal',sans-serif;font-size:18px;outline:none;text-align:center;width:100%;letter-spacing:4px;transition:border-color 0.3s,box-shadow 0.3s;}
-  .lock-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,0.12);}
-  .lock-input::placeholder{letter-spacing:1px;font-size:14px;color:rgba(245,234,208,0.25);}
-  .lock-btn{background:linear-gradient(135deg,var(--gold),var(--gold-dim));border:none;border-radius:12px;padding:14px;color:var(--midnight);font-family:'Tajawal',sans-serif;font-size:16px;font-weight:700;cursor:pointer;width:100%;transition:transform 0.2s,box-shadow 0.2s;}
-  .lock-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(201,168,76,0.25);}
-  .lock-error{color:#e74c3c;font-size:13px;background:rgba(192,57,43,0.1);border:1px solid rgba(192,57,43,0.25);border-radius:8px;padding:8px 16px;width:100%;text-align:center;display:none;}
+  .lock-sub{font-size:14px;color:rgba(253,242,248,0.4);margin-top:-8px;}
+  .lock-input{background:rgba(232,107,172,0.08);border:2px solid rgba(232,107,172,0.3);border-radius:12px;padding:14px 20px;color:var(--cream);font-family:'Tajawal',sans-serif;font-size:18px;outline:none;text-align:center;width:100%;letter-spacing:4px;transition:border-color 0.3s,box-shadow 0.3s;}
+  .lock-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(232,107,172,0.15);}
+  .lock-input::placeholder{letter-spacing:1px;font-size:14px;color:rgba(253,242,248,0.25);}
+  .lock-btn{background:linear-gradient(135deg,var(--gold),var(--gold-dim));border:none;border-radius:12px;padding:14px;color:white;font-family:'Tajawal',sans-serif;font-size:16px;font-weight:700;cursor:pointer;width:100%;transition:transform 0.2s,box-shadow 0.2s;}
+  .lock-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(232,107,172,0.3);}
+  .lock-error{color:#fb7185;font-size:13px;background:rgba(190,18,60,0.1);border:1px solid rgba(190,18,60,0.25);border-radius:8px;padding:8px 16px;width:100%;text-align:center;display:none;}
   .lock-error.show{display:block;animation:shake 0.35s ease;}
   @keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-8px);}40%{transform:translateX(8px);}60%{transform:translateX(-5px);}80%{transform:translateX(5px);}}
 
   /* HEADER */
-  header{display:flex;align-items:center;justify-content:space-between;padding:14px 28px;border-bottom:1px solid rgba(201,168,76,0.2);background:rgba(10,14,26,0.9);backdrop-filter:blur(10px);position:sticky;top:0;z-index:200;gap:16px;}
+  header{display:flex;align-items:center;justify-content:space-between;padding:14px 28px;border-bottom:1px solid rgba(232,107,172,0.2);background:rgba(26,10,30,0.9);backdrop-filter:blur(10px);position:sticky;top:0;z-index:200;gap:16px;}
   .logo{display:flex;align-items:center;gap:10px;}
-  .logo-icon{font-size:24px;filter:drop-shadow(0 0 8px rgba(201,168,76,0.5));}
+  .logo-icon{font-size:24px;filter:drop-shadow(0 0 8px rgba(232,107,172,0.5));}
   .logo-text{font-family:'Amiri',serif;font-size:22px;color:var(--gold);}
-  .ctrl-badge{background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);border-radius:8px;padding:4px 12px;font-size:12px;color:var(--gold-dim);}
+  .ctrl-badge{background:rgba(232,107,172,0.1);border:1px solid rgba(232,107,172,0.3);border-radius:8px;padding:4px 12px;font-size:12px;color:var(--gold-dim);}
   .conn-dot{width:8px;height:8px;border-radius:50%;background:#888;display:inline-block;margin-left:6px;}
   .conn-dot.connected{background:var(--green);animation:pulse 2s infinite;}
   .conn-dot.disconnected{background:var(--red);}
 
   /* LAYOUT */
   .layout{display:flex;flex:1;overflow:hidden;}
-  .rooms-sidebar{width:260px;flex-shrink:0;background:rgba(10,14,26,0.7);border-left:1px solid rgba(201,168,76,0.15);display:flex;flex-direction:column;overflow:hidden;}
-  .sidebar-header{padding:18px 16px 12px;border-bottom:1px solid rgba(201,168,76,0.12);display:flex;align-items:center;justify-content:space-between;}
+  .rooms-sidebar{width:260px;flex-shrink:0;background:rgba(26,10,30,0.7);border-left:1px solid rgba(232,107,172,0.15);display:flex;flex-direction:column;overflow:hidden;}
+  .sidebar-header{padding:18px 16px 12px;border-bottom:1px solid rgba(232,107,172,0.12);display:flex;align-items:center;justify-content:space-between;}
   .sidebar-title{font-family:'Amiri',serif;font-size:17px;color:var(--gold-light);}
   .room-list{flex:1;overflow-y:auto;padding:10px 8px;display:flex;flex-direction:column;gap:6px;}
-  .room-item{padding:12px 14px;border-radius:12px;border:1px solid rgba(201,168,76,0.12);background:rgba(255,255,255,0.02);cursor:pointer;transition:all 0.2s;position:relative;}
-  .room-item:hover{border-color:rgba(201,168,76,0.3);background:rgba(201,168,76,0.04);}
-  .room-item.active-room{border-color:var(--gold);background:rgba(201,168,76,0.08);}
+  .room-item{padding:12px 14px;border-radius:12px;border:1px solid rgba(232,107,172,0.12);background:rgba(255,255,255,0.02);cursor:pointer;transition:all 0.2s;position:relative;}
+  .room-item:hover{border-color:rgba(232,107,172,0.3);background:rgba(232,107,172,0.04);}
+  .room-item.active-room{border-color:var(--gold);background:rgba(232,107,172,0.08);}
   .room-code{font-family:'Amiri',serif;font-size:20px;color:var(--gold-light);letter-spacing:3px;font-weight:700;}
-  .room-meta{font-size:12px;color:rgba(245,234,208,0.4);margin-top:3px;display:flex;align-items:center;gap:6px;}
+  .room-meta{font-size:12px;color:rgba(253,242,248,0.4);margin-top:3px;display:flex;align-items:center;gap:6px;}
   .room-phase-dot{width:6px;height:6px;border-radius:50%;}
   .phase-lobby{background:#f39c12;}
   .phase-live{background:var(--green);animation:pulse 1s infinite;}
   .phase-ended{background:var(--red);}
   .room-delete{position:absolute;top:8px;left:8px;width:22px;height:22px;border-radius:6px;background:rgba(192,57,43,0.1);border:1px solid rgba(192,57,43,0.2);color:#e74c3c;font-size:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transition:opacity 0.2s;}
   .room-item:hover .room-delete{opacity:1;}
-  .new-room-form{padding:12px 10px;border-top:1px solid rgba(201,168,76,0.12);display:flex;gap:8px;align-items:center;}
-  .new-room-input{background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.2);border-radius:9px;padding:9px 12px;color:var(--cream);font-family:'Amiri',serif;font-size:18px;letter-spacing:4px;text-align:center;width:0;flex:1;outline:none;text-transform:uppercase;transition:border-color 0.2s;}
+  .new-room-form{padding:12px 10px;border-top:1px solid rgba(232,107,172,0.12);display:flex;gap:8px;align-items:center;}
+  .new-room-input{background:rgba(232,107,172,0.06);border:1px solid rgba(232,107,172,0.2);border-radius:9px;padding:9px 12px;color:var(--cream);font-family:'Amiri',serif;font-size:18px;letter-spacing:4px;text-align:center;width:0;flex:1;outline:none;text-transform:uppercase;transition:border-color 0.2s;}
   .new-room-input:focus{border-color:var(--gold);}
-  .new-room-input::placeholder{font-size:12px;letter-spacing:1px;font-family:'Tajawal',sans-serif;color:rgba(245,234,208,0.25);}
+  .new-room-input::placeholder{font-size:12px;letter-spacing:1px;font-family:'Tajawal',sans-serif;color:rgba(253,242,248,0.25);}
 
   /* MAIN */
   .main-area{flex:1;display:flex;flex-direction:column;overflow:hidden;}
-  .tabs{display:flex;border-bottom:1px solid rgba(201,168,76,0.15);background:rgba(10,14,26,0.6);overflow-x:auto;flex-direction:row-reverse;}
-  .tab{padding:13px 24px;font-size:14px;font-weight:500;color:rgba(245,234,208,0.4);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;white-space:nowrap;font-family:'Tajawal',sans-serif;background:none;border-left:none;border-right:none;border-top:none;}
+  .tabs{display:flex;border-bottom:1px solid rgba(232,107,172,0.15);background:rgba(26,10,30,0.6);overflow-x:auto;flex-direction:row-reverse;}
+  .tab{padding:13px 24px;font-size:14px;font-weight:500;color:rgba(253,242,248,0.4);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;white-space:nowrap;font-family:'Tajawal',sans-serif;background:none;border-left:none;border-right:none;border-top:none;}
   .tab:hover{color:var(--gold-light);}
   .tab.active{color:var(--gold-light);border-bottom-color:var(--gold);}
   .panel{flex:1;padding:24px;overflow-y:auto;display:none;flex-direction:column;gap:18px;}
   .panel.active{display:flex;}
 
   /* CARDS */
-  .card{background:var(--card-bg);border:1px solid rgba(201,168,76,0.2);border-radius:20px;padding:22px;position:relative;overflow:hidden;}
-  .card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent);}
+  .card{background:var(--card-bg);border:1px solid rgba(232,107,172,0.2);border-radius:20px;padding:22px;position:relative;overflow:hidden;}
+  .card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(232,107,172,0.3),transparent);}
   .card-title{font-family:'Amiri',serif;font-size:18px;color:var(--gold-light);margin-bottom:16px;display:flex;align-items:center;gap:8px;flex-direction:row-reverse;}
 
   /* BUTTONS */
   .btn{border:none;border-radius:12px;padding:11px 22px;font-family:'Tajawal',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;}
   .btn:disabled{opacity:0.35;cursor:not-allowed;}
   .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-dim));color:var(--midnight);}
-  .btn-gold:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 20px rgba(201,168,76,0.25);}
-  .btn-outline{background:transparent;border:1px solid rgba(201,168,76,0.3);color:var(--gold);}
-  .btn-outline:hover:not(:disabled){border-color:var(--gold);background:rgba(201,168,76,0.05);}
+  .btn-gold:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 20px rgba(232,107,172,0.25);}
+  .btn-outline{background:transparent;border:1px solid rgba(232,107,172,0.3);color:var(--gold);}
+  .btn-outline:hover:not(:disabled){border-color:var(--gold);background:rgba(232,107,172,0.05);}
   .btn-danger{background:rgba(192,57,43,0.15);border:1px solid rgba(192,57,43,0.4);color:#e74c3c;}
   .btn-danger:hover:not(:disabled){background:rgba(192,57,43,0.25);}
   .btn-green{background:rgba(26,156,79,0.2);border:1px solid rgba(26,156,79,0.4);color:#2ecc71;}
@@ -94,31 +98,31 @@
   .btn-sm{padding:7px 14px;font-size:13px;border-radius:8px;}
 
   /* INPUTS */
-  .input-field{background:rgba(201,168,76,0.05);border:1px solid rgba(201,168,76,0.2);border-radius:10px;padding:10px 14px;color:var(--cream);font-family:'Tajawal',sans-serif;font-size:14px;outline:none;transition:border-color 0.2s,box-shadow 0.2s;width:100%;text-align:right;}
-  .input-field:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,0.1);}
-  .input-field::placeholder{color:rgba(245,234,208,0.3);}
+  .input-field{background:rgba(232,107,172,0.05);border:1px solid rgba(232,107,172,0.2);border-radius:10px;padding:10px 14px;color:var(--cream);font-family:'Tajawal',sans-serif;font-size:14px;outline:none;transition:border-color 0.2s,box-shadow 0.2s;width:100%;text-align:right;}
+  .input-field:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(232,107,172,0.1);}
+  .input-field::placeholder{color:rgba(253,242,248,0.3);}
   .label{font-size:12px;color:var(--gold-dim);margin-bottom:6px;display:block;}
 
   /* CONTROL */
   .control-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
   @media(max-width:900px){.control-grid{grid-template-columns:1fr;}}
-  .game-status{display:flex;align-items:center;gap:12px;padding:14px 18px;background:rgba(201,168,76,0.06);border-radius:12px;border:1px solid rgba(201,168,76,0.15);margin-bottom:4px;flex-direction:row-reverse;}
+  .game-status{display:flex;align-items:center;gap:12px;padding:14px 18px;background:rgba(232,107,172,0.06);border-radius:12px;border:1px solid rgba(232,107,172,0.15);margin-bottom:4px;flex-direction:row-reverse;}
   .status-dot{width:10px;height:10px;border-radius:50%;background:#888;}
   .status-dot.lobby{background:#f39c12;animation:pulse 1.5s infinite;}
   .status-dot.live{background:var(--green);animation:pulse 1s infinite;}
   .status-dot.ended{background:var(--red);}
   @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.8);}}
   .status-text{font-size:15px;color:var(--gold-light);font-weight:500;}
-  .status-sub{font-size:12px;color:rgba(245,234,208,0.4);margin-top:2px;}
-  .session-code-big{font-family:'Amiri',serif;font-size:44px;color:var(--gold-light);letter-spacing:10px;text-align:center;text-shadow:0 0 24px rgba(201,168,76,0.35);}
-  .current-q-display{background:rgba(201,168,76,0.04);border:2px solid rgba(201,168,76,0.2);border-radius:14px;padding:20px;text-align:center;min-height:90px;display:flex;align-items:center;justify-content:center;}
+  .status-sub{font-size:12px;color:rgba(253,242,248,0.4);margin-top:2px;}
+  .session-code-big{font-family:'Amiri',serif;font-size:44px;color:var(--gold-light);letter-spacing:10px;text-align:center;text-shadow:0 0 24px rgba(232,107,172,0.35);}
+  .current-q-display{background:rgba(232,107,172,0.04);border:2px solid rgba(232,107,172,0.2);border-radius:14px;padding:20px;text-align:center;min-height:90px;display:flex;align-items:center;justify-content:center;}
   .current-q-text{font-family:'Amiri',serif;font-size:clamp(17px,2.5vw,25px);color:var(--gold-light);line-height:1.7;direction:rtl;}
-  .big-timer{font-family:'Amiri',serif;font-size:72px;color:var(--gold);text-align:center;text-shadow:0 0 30px rgba(201,168,76,0.4);line-height:1;transition:color 0.5s;}
+  .big-timer{font-family:'Amiri',serif;font-size:72px;color:var(--gold);text-align:center;text-shadow:0 0 30px rgba(232,107,172,0.4);line-height:1;transition:color 0.5s;}
   .ctrl-answers{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-  .ctrl-ans{padding:11px 14px;background:rgba(255,255,255,0.03);border:1px solid rgba(201,168,76,0.15);border-radius:10px;display:flex;align-items:center;gap:10px;font-size:14px;flex-direction:row-reverse;text-align:right;}
+  .ctrl-ans{padding:11px 14px;background:rgba(255,255,255,0.03);border:1px solid rgba(232,107,172,0.15);border-radius:10px;display:flex;align-items:center;gap:10px;font-size:14px;flex-direction:row-reverse;text-align:right;}
   .ctrl-ans.correct-ans{border-color:var(--green);background:rgba(26,156,79,0.12);}
   .ctrl-ans.wrong-ans{opacity:0.4;}
-  .ans-letter{min-width:26px;height:26px;border-radius:6px;background:rgba(201,168,76,0.12);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--gold);font-size:13px;font-family:'Amiri',serif;flex-shrink:0;}
+  .ans-letter{min-width:26px;height:26px;border-radius:6px;background:rgba(232,107,172,0.12);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--gold);font-size:13px;font-family:'Amiri',serif;flex-shrink:0;}
   .ctrl-ans.correct-ans .ans-letter{background:var(--green);color:white;}
   .controls-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;flex-direction:row-reverse;}
   .live-player{display:flex;align-items:center;justify-content:space-between;padding:9px 13px;border-radius:10px;background:rgba(255,255,255,0.03);margin-bottom:7px;flex-direction:row-reverse;}
@@ -131,34 +135,34 @@
 
   /* ANALYTICS */
   .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;}
-  .stat-card{background:rgba(201,168,76,0.05);border:1px solid rgba(201,168,76,0.2);border-radius:14px;padding:18px;text-align:center;}
+  .stat-card{background:rgba(232,107,172,0.05);border:1px solid rgba(232,107,172,0.2);border-radius:14px;padding:18px;text-align:center;}
   .stat-val{font-family:'Amiri',serif;font-size:34px;color:var(--gold-light);font-weight:700;line-height:1;}
-  .stat-label{font-size:12px;color:rgba(245,234,208,0.4);margin-top:6px;}
+  .stat-label{font-size:12px;color:rgba(253,242,248,0.4);margin-top:6px;}
   .dist-bar-wrap{display:flex;align-items:center;gap:10px;margin-bottom:9px;flex-direction:row-reverse;}
   .dist-label{width:22px;font-weight:700;color:var(--gold);text-align:center;font-family:'Amiri',serif;font-size:15px;}
   .dist-bar-bg{flex:1;height:26px;background:rgba(255,255,255,0.04);border-radius:6px;overflow:hidden;}
   .dist-bar-fill{height:100%;border-radius:6px;transition:width 0.6s ease;display:flex;align-items:center;padding-right:10px;font-size:12px;font-weight:600;color:white;direction:ltr;}
-  .dist-count{width:36px;text-align:left;font-size:13px;color:rgba(245,234,208,0.5);}
+  .dist-count{width:36px;text-align:left;font-size:13px;color:rgba(253,242,248,0.5);}
   .lb-table{width:100%;border-collapse:collapse;}
-  .lb-table th{text-align:right;padding:9px 11px;font-size:11px;color:var(--gold-dim);border-bottom:1px solid rgba(201,168,76,0.15);}
+  .lb-table th{text-align:right;padding:9px 11px;font-size:11px;color:var(--gold-dim);border-bottom:1px solid rgba(232,107,172,0.15);}
   .lb-table td{padding:11px;font-size:14px;border-bottom:1px solid rgba(255,255,255,0.04);text-align:right;}
-  .lb-table tr:hover td{background:rgba(201,168,76,0.04);}
+  .lb-table tr:hover td{background:rgba(232,107,172,0.04);}
   .rank-cell{font-family:'Amiri',serif;font-weight:700;color:var(--gold-dim);}
   .score-cell{font-family:'Amiri',serif;font-size:15px;color:var(--gold-light);}
 
   /* QUESTION BANK */
   .qb-list{display:flex;flex-direction:column;gap:13px;}
-  .qb-item{background:rgba(255,255,255,0.03);border:1px solid rgba(201,168,76,0.15);border-radius:14px;padding:17px 18px;transition:border-color 0.2s;position:relative;}
-  .qb-item:hover{border-color:rgba(201,168,76,0.3);}
+  .qb-item{background:rgba(255,255,255,0.03);border:1px solid rgba(232,107,172,0.15);border-radius:14px;padding:17px 18px;transition:border-color 0.2s;position:relative;}
+  .qb-item:hover{border-color:rgba(232,107,172,0.3);}
   .qb-q-text{font-size:15px;font-weight:500;margin-bottom:10px;line-height:1.6;padding-left:90px;direction:rtl;}
   .qb-answers{display:flex;flex-wrap:wrap;gap:7px;flex-direction:row-reverse;}
-  .qb-ans-chip{padding:4px 13px;border-radius:20px;font-size:13px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:rgba(245,234,208,0.6);}
+  .qb-ans-chip{padding:4px 13px;border-radius:20px;font-size:13px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:rgba(253,242,248,0.6);}
   .qb-ans-chip.correct-chip{background:rgba(26,156,79,0.15);border-color:rgba(26,156,79,0.4);color:#2ecc71;font-weight:600;}
   .qb-actions{position:absolute;top:14px;left:14px;display:flex;gap:7px;}
 
   /* MODAL */
   .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;}
-  .modal{background:var(--navy);border:1px solid rgba(201,168,76,0.3);border-radius:24px;padding:30px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;position:relative;}
+  .modal{background:var(--navy);border:1px solid rgba(232,107,172,0.3);border-radius:24px;padding:30px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;position:relative;}
   .modal-title{font-family:'Amiri',serif;font-size:21px;color:var(--gold-light);margin-bottom:22px;}
   .modal-close{position:absolute;top:18px;left:18px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--cream);font-size:15px;transition:background 0.2s;}
   .modal-close:hover{background:rgba(255,255,255,0.12);}
@@ -172,16 +176,16 @@
   .empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:60px 20px;text-align:center;flex:1;}
   .empty-icon{font-size:56px;opacity:0.4;}
   .empty-text{font-family:'Amiri',serif;font-size:22px;color:var(--gold-dim);}
-  .empty-sub{font-size:14px;color:rgba(245,234,208,0.3);}
+  .empty-sub{font-size:14px;color:rgba(253,242,248,0.3);}
 
   /* NOTIFY */
-  .notify{position:fixed;bottom:24px;left:24px;background:var(--navy);border:1px solid rgba(201,168,76,0.3);border-radius:14px;padding:13px 18px;z-index:1000;display:flex;align-items:center;gap:10px;font-size:14px;box-shadow:0 10px 30px rgba(0,0,0,0.4);animation:slideIn 0.3s ease;max-width:300px;transition:opacity 0.4s;}
+  .notify{position:fixed;bottom:24px;left:24px;background:var(--navy);border:1px solid rgba(232,107,172,0.3);border-radius:14px;padding:13px 18px;z-index:1000;display:flex;align-items:center;gap:10px;font-size:14px;box-shadow:0 10px 30px rgba(0,0,0,0.4);animation:slideIn 0.3s ease;max-width:300px;transition:opacity 0.4s;}
   @keyframes slideIn{from{transform:translateX(-100%);opacity:0;}to{transform:translateX(0);opacity:1;}}
   .tag{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;}
   .tag-lobby{background:rgba(243,156,18,0.15);color:#f39c12;border:1px solid rgba(243,156,18,0.3);}
   .tag-live{background:rgba(26,156,79,0.15);color:#2ecc71;border:1px solid rgba(26,156,79,0.3);}
   .tag-ended{background:rgba(192,57,43,0.15);color:#e74c3c;border:1px solid rgba(192,57,43,0.3);}
-  .separator{height:1px;background:rgba(201,168,76,0.12);margin:4px 0;}
+  .separator{height:1px;background:rgba(232,107,172,0.12);margin:4px 0;}
   .hidden{display:none!important;}
 </style>
 </head>
@@ -190,8 +194,8 @@
 <!-- LOCK SCREEN -->
 <div id="lock-screen">
   <div class="lock-box">
-    <div class="lock-icon">🔒</div>
-    <div class="lock-title">لوحة التحكم</div>
+    <div class="lock-icon">🌸</div>
+    <div class="lock-title">لوحة التحكم 🌷</div>
     <div class="lock-sub">أدخل كلمة المرور للمتابعة</div>
     <input class="lock-input" id="lock-input" type="password" placeholder="كلمة المرور..." onkeydown="if(event.key==='Enter')checkPassword()" autofocus>
     <div class="lock-error" id="lock-error">❌ كلمة المرور غير صحيحة</div>
@@ -202,12 +206,12 @@
 <div class="app">
   <header>
     <div class="logo">
-      <span class="logo-icon">🌙</span>
-      <span class="logo-text">مسابقة رمضان</span>
+      <span class="logo-icon">🌸</span>
+      <span class="logo-text">مسابقة الأزهار 🌸</span>
       <span class="ctrl-badge">المتحكم</span>
     </div>
     <div style="display:flex;gap:10px;align-items:center;">
-      <span id="conn-status" style="font-size:12px;color:rgba(245,234,208,0.4);">جارٍ الاتصال...</span>
+      <span id="conn-status" style="font-size:12px;color:rgba(253,242,248,0.4);">جارٍ الاتصال...</span>
       <span class="conn-dot disconnected" id="conn-dot"></span>
       <span id="phase-tag" class="tag tag-lobby">لا توجد غرفة</span>
     </div>
@@ -260,7 +264,7 @@
               <div style="text-align:center;flex-shrink:0;">
                 <div class="label" style="margin-bottom:6px;">رمز الغرفة</div>
                 <div class="session-code-big" id="ctrl-room-code">——</div>
-                <div style="font-size:11px;color:rgba(245,234,208,0.3);margin-top:4px;">يشاركه اللاعبون</div>
+                <div style="font-size:11px;color:rgba(253,242,248,0.3);margin-top:4px;">يشاركه اللاعبون</div>
               </div>
             </div>
           </div>
@@ -269,7 +273,7 @@
             <div class="card">
               <div class="card-title">❓ السؤال الحالي</div>
               <div class="current-q-display" id="ctrl-q-display">
-                <span style="color:rgba(245,234,208,0.3);font-size:15px;">ابدأ اللعبة لعرض السؤال</span>
+                <span style="color:rgba(253,242,248,0.3);font-size:15px;">ابدأ اللعبة لعرض السؤال</span>
               </div>
               <div style="margin-top:14px;"><div class="ctrl-answers" id="ctrl-answers-display"></div></div>
               <div class="controls-row" style="margin-top:14px;">
@@ -284,7 +288,7 @@
               <div class="big-timer" id="ctrl-timer">—</div>
               <div class="separator" style="margin:18px 0;"></div>
               <div class="card-title">👥 اللاعبون</div>
-              <div id="live-players-list"><span style="color:rgba(245,234,208,0.3);font-size:14px;">لا يوجد لاعبون بعد</span></div>
+              <div id="live-players-list"><span style="color:rgba(253,242,248,0.3);font-size:14px;">لا يوجد لاعبون بعد</span></div>
             </div>
           </div>
         </div>
@@ -299,7 +303,7 @@
           </div>
           <div class="card">
             <div class="card-title">📊 توزيع الإجابات</div>
-            <div id="dist-container"><span style="color:rgba(245,234,208,0.3);font-size:14px;">لا يوجد سؤال نشط</span></div>
+            <div id="dist-container"><span style="color:rgba(253,242,248,0.3);font-size:14px;">لا يوجد سؤال نشط</span></div>
           </div>
           <div class="card">
             <div class="card-title">🏆 لوحة المتصدرين</div>
@@ -317,7 +321,7 @@
               <div class="card-title" style="margin-bottom:0;">🗂 بنك الأسئلة</div>
               <button class="btn btn-gold btn-sm" onclick="openAddModal()">＋ إضافة سؤال</button>
             </div>
-            <div class="qb-list" id="qb-list"><span style="color:rgba(245,234,208,0.3);font-size:14px;">لا توجد أسئلة. أضف بعضها!</span></div>
+            <div class="qb-list" id="qb-list"><span style="color:rgba(253,242,248,0.3);font-size:14px;">لا توجد أسئلة. أضف بعضها!</span></div>
           </div>
         </div>
       </div>
@@ -401,14 +405,18 @@ function newRoomState(code){
 
 function getDefaultQuestions(){
   return [
-    {question:'في أي شهر من أشهر السنة الهجرية يقع شهر رمضان المبارك؟',answers:['السابع','الثامن','التاسع','العاشر'],correctIndex:2},
-    {question:'ما اسم الوجبة التي يتناولها المسلمون قبل الفجر في رمضان؟',answers:['الإفطار','السحور','الغداء','الوليمة'],correctIndex:1},
-    {question:'ما اسم الليلة التي تُعدّ أفضل من ألف شهر في رمضان؟',answers:['ليلة المعراج','ليلة القدر','ليلة النصف من شعبان','ليلة الجمعة'],correctIndex:1},
-    {question:'في أي وقت يُفطر المسلم في رمضان؟',answers:['عند الظهر','بعد العصر','عند غروب الشمس','بعد العشاء'],correctIndex:2},
-    {question:'كم عدد أيام شهر رمضان عادةً؟',answers:['٢٧ يوماً','٢٨ يوماً','٢٩ أو ٣٠ يوماً','٣١ يوماً'],correctIndex:2},
-    {question:'ما الركن من أركان الإسلام الذي يُمثّله الصيام؟',answers:['الأول','الثاني','الثالث','الرابع'],correctIndex:2},
-    {question:'ما اسم صلاة النافلة التي تُصلى في رمضان بعد صلاة العشاء؟',answers:['الوتر','التهجد','التراويح','الضحى'],correctIndex:2},
-    {question:'ما الزكاة التي تُؤدَّى في نهاية شهر رمضان المبارك؟',answers:['زكاة المال','زكاة الفطر','زكاة الذهب','زكاة الزروع'],correctIndex:1}
+    // Arabic questions
+    {question:'ما هو الزهرة الوطنية لليابان؟',answers:['زهرة اللوتس','زهرة الكرز','زهرة النرجس','زهرة التوليب'],correctIndex:1},
+    {question:'أي زهرة تُعدّ رمزاً للحب والرومانسية حول العالم؟',answers:['زهرة البنفسج','زهرة الياسمين','زهرة الورد','زهرة الأقحوان'],correctIndex:2},
+    {question:'من أين تأتي زهرة التوليب أصلاً؟',answers:['هولندا','تركيا','إيران','اليابان'],correctIndex:1},
+    {question:'ما هي الزهرة التي تُستخدم في صنع الزعفران؟',answers:['زهرة الورد','زهرة الكركم','زهرة الزعفران (الكروكس)','زهرة اللافندر'],correctIndex:2},
+    // English questions
+    {question:'Which flower is known as the "Queen of Flowers"?',answers:['Lily','Orchid','Rose','Jasmine'],correctIndex:2},
+    {question:'How many petals does a typical daisy have?',answers:['8','13','21','34'],correctIndex:1},
+    {question:'Which flower closes its petals at night?',answers:['Sunflower','Tulip','Daisy','Dandelion'],correctIndex:2},
+    {question:'What color is a lavender flower?',answers:['Pink','White','Purple','Yellow'],correctIndex:2},
+    {question:'Which flower has the most varieties in the world?',answers:['Rose','Orchid','Tulip','Lily'],correctIndex:1},
+    {question:'What does a white lily symbolize?',answers:['Passion','Purity & rebirth','Friendship','Luck'],correctIndex:1},
   ];
 }
 
@@ -540,7 +548,7 @@ function renderRoomList(data){
   const list=document.getElementById('room-list');
   list.innerHTML='';
   if(!allRoomCodes.length){
-    list.innerHTML='<div style="padding:20px;text-align:center;color:rgba(245,234,208,0.25);font-size:13px;">لا توجد غرف بعد</div>';
+    list.innerHTML='<div style="padding:20px;text-align:center;color:rgba(253,242,248,0.25);font-size:13px;">لا توجد غرف بعد</div>';
     return;
   }
   allRoomCodes.forEach(code=>{
@@ -607,7 +615,7 @@ function renderQProgress(s){
 function renderLivePlayers(s){
   const c=document.getElementById('live-players-list');
   const ps=Object.entries(s.players||{}).sort((a,b)=>b[1]-a[1]);
-  if(!ps.length){c.innerHTML='<span style="color:rgba(245,234,208,0.3);font-size:14px;">لا يوجد لاعبون بعد</span>';return;}
+  if(!ps.length){c.innerHTML='<span style="color:rgba(253,242,248,0.3);font-size:14px;">لا يوجد لاعبون بعد</span>';return;}
   c.innerHTML='';
   ps.forEach(([name,score],i)=>{
     const row=document.createElement('div');
@@ -626,7 +634,7 @@ function renderControlQuestion(s){
   const btnEnd=document.getElementById('btn-end');
   if(s.phase==='lobby'){
     btnStart.classList.remove('hidden');btnNext.classList.add('hidden');btnReveal.classList.add('hidden');btnEnd.classList.add('hidden');
-    display.innerHTML='<span style="color:rgba(245,234,208,0.3);font-size:15px;">ابدأ اللعبة لعرض الأسئلة</span>';
+    display.innerHTML='<span style="color:rgba(253,242,248,0.3);font-size:15px;">ابدأ اللعبة لعرض الأسئلة</span>';
     ansDisplay.innerHTML='';
     document.getElementById('ctrl-timer').textContent='—';
     document.getElementById('ctrl-timer').style.color='var(--gold)';
@@ -737,16 +745,16 @@ function renderAnalytics(s){
       const count=dist[i]||0;const pct=Math.round((count/total)*100);const correct=i===s.correctAnswer;
       distC.innerHTML+=`<div class="dist-bar-wrap"><div class="dist-count">${toAr(count)}</div><div class="dist-bar-bg"><div class="dist-bar-fill" style="width:${pct}%;background:${correct?'#1a9c4f':colors[i]}">${pct>8?pct+'%':''}</div></div><div class="dist-label" style="color:${correct?'#2ecc71':colors[i]}">${letters[i]}</div></div>`;
     });
-  } else {distC.innerHTML='<span style="color:rgba(245,234,208,0.3);font-size:14px;">لا يوجد سؤال نشط</span>';}
+  } else {distC.innerHTML='<span style="color:rgba(253,242,248,0.3);font-size:14px;">لا يوجد سؤال نشط</span>';}
   const tbody=document.getElementById('analytics-lb');
   tbody.innerHTML='';
   const medals=['🥇','🥈','🥉'];
   sorted.forEach(([name,score],i)=>{
     const tr=document.createElement('tr');
-    tr.innerHTML=`<td style="color:rgba(245,234,208,0.4);font-size:13px;">✓</td><td class="score-cell">${score.toLocaleString('en-US')}</td><td>${name}</td><td class="rank-cell">${i<3?medals[i]:'#'+toAr(i+1)}</td>`;
+    tr.innerHTML=`<td style="color:rgba(253,242,248,0.4);font-size:13px;">✓</td><td class="score-cell">${score.toLocaleString('en-US')}</td><td>${name}</td><td class="rank-cell">${i<3?medals[i]:'#'+toAr(i+1)}</td>`;
     tbody.appendChild(tr);
   });
-  if(!sorted.length)tbody.innerHTML='<tr><td colspan="4" style="color:rgba(245,234,208,0.3);padding:20px;text-align:center;">لا يوجد لاعبون بعد</td></tr>';
+  if(!sorted.length)tbody.innerHTML='<tr><td colspan="4" style="color:rgba(253,242,248,0.3);padding:20px;text-align:center;">لا يوجد لاعبون بعد</td></tr>';
 }
 
 // ══════════════════════════════════════════
@@ -755,7 +763,7 @@ function renderAnalytics(s){
 function renderQBank(s){
   const list=document.getElementById('qb-list');
   const qs=s.questions||[];
-  if(!qs.length){list.innerHTML='<span style="color:rgba(245,234,208,0.3);font-size:14px;">لا توجد أسئلة بعد.</span>';return;}
+  if(!qs.length){list.innerHTML='<span style="color:rgba(253,242,248,0.3);font-size:14px;">لا توجد أسئلة بعد.</span>';return;}
   list.innerHTML='';
   qs.forEach((q,i)=>{
     const item=document.createElement('div');
