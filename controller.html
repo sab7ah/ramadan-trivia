@@ -406,17 +406,28 @@ function newRoomState(code){
 function getDefaultQuestions(){
   return [
     // Arabic questions
-    {question:'ما هو الزهرة الوطنية لليابان؟',answers:['زهرة اللوتس','زهرة الكرز','زهرة النرجس','زهرة التوليب'],correctIndex:1},
-    {question:'أي زهرة تُعدّ رمزاً للحب والرومانسية حول العالم؟',answers:['زهرة البنفسج','زهرة الياسمين','زهرة الورد','زهرة الأقحوان'],correctIndex:2},
-    {question:'من أين تأتي زهرة التوليب أصلاً؟',answers:['هولندا','تركيا','إيران','اليابان'],correctIndex:1},
-    {question:'ما هي الزهرة التي تُستخدم في صنع الزعفران؟',answers:['زهرة الورد','زهرة الكركم','زهرة الزعفران (الكروكس)','زهرة اللافندر'],correctIndex:2},
+    {question:'ما هو أكبر كوكب في المجموعة الشمسية؟',answers:['الأرض','المريخ','المشتري','زحل'],correctIndex:2}, // easy
+    {question:'كم عدد قارات العالم؟',answers:['5','6','7','8'],correctIndex:2}, // easy
+    {question:'ما هي عاصمة كندا؟',answers:['تورونتو','أوتاوا','فانكوفر','مونتريال'],correctIndex:1}, // medium
+    {question:'أي عنصر كيميائي رمزه Fe؟',answers:['فضة','حديد','ذهب','نحاس'],correctIndex:1}, // medium
+    {question:'من هو مؤلف كتاب "البؤساء"؟',answers:['فيكتور هوغو','تولستوي','ديكنز','شكسبير'],correctIndex:0}, // medium
+    {question:'ما هو أسرع حيوان بري؟',answers:['الأسد','الفهد','النمر','الغزال'],correctIndex:1}, // easy
+    {question:'كم عدد عظام جسم الإنسان البالغ؟',answers:['198','206','210','215'],correctIndex:1}, // medium
+    {question:'ما هو أعمق محيط في العالم؟',answers:['الأطلسي','الهندي','الهادئ','المتجمد'],correctIndex:2}, // medium
+    {question:'في أي عام هبط الإنسان على القمر لأول مرة؟',answers:['1965','1969','1972','1959'],correctIndex:1}, // medium
+    {question:'ما هي أصغر دولة في العالم؟',answers:['موناكو','الفاتيكان','مالطا','سان مارينو'],correctIndex:1}, // hard
+
     // English questions
-    {question:'Which flower is known as the "Queen of Flowers"?',answers:['Lily','Orchid','Rose','Jasmine'],correctIndex:2},
-    {question:'How many petals does a typical daisy have?',answers:['8','13','21','34'],correctIndex:1},
-    {question:'Which flower closes its petals at night?',answers:['Sunflower','Tulip','Daisy','Dandelion'],correctIndex:2},
-    {question:'What color is a lavender flower?',answers:['Pink','White','Purple','Yellow'],correctIndex:2},
-    {question:'Which flower has the most varieties in the world?',answers:['Rose','Orchid','Tulip','Lily'],correctIndex:1},
-    {question:'What does a white lily symbolize?',answers:['Passion','Purity & rebirth','Friendship','Luck'],correctIndex:1},
+    {question:'What is the capital of Australia?',answers:['Sydney','Melbourne','Canberra','Perth'],correctIndex:2}, // medium
+    {question:'Which element has the atomic number 1?',answers:['Helium','Hydrogen','Oxygen','Carbon'],correctIndex:1}, // easy
+    {question:'Who developed the theory of relativity?',answers:['Isaac Newton','Albert Einstein','Galileo Galilei','Nikola Tesla'],correctIndex:1}, // easy
+    {question:'Which planet has the most moons?',answers:['Earth','Mars','Jupiter','Venus'],correctIndex:2}, // medium
+    {question:'What is the hardest natural substance on Earth?',answers:['Gold','Iron','Diamond','Quartz'],correctIndex:2}, // easy
+    {question:'What is the square root of 144?',answers:['10','11','12','13'],correctIndex:2}, // easy
+    {question:'Which country hosted the 2016 Summer Olympics?',answers:['China','UK','Brazil','Russia'],correctIndex:2}, // medium
+    {question:'Who wrote "1984"?',answers:['George Orwell','Mark Twain','Ernest Hemingway','F. Scott Fitzgerald'],correctIndex:0}, // medium
+    {question:'What is the chemical formula for table salt?',answers:['NaCl','KCl','CaCO3','H2O'],correctIndex:0}, // medium
+    {question:'Which galaxy is Earth located in?',answers:['Andromeda','Whirlpool','Milky Way','Sombrero'],correctIndex:2}, // easy
   ];
 }
 
