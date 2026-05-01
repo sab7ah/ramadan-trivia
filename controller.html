@@ -394,12 +394,31 @@ let editingIndex = null;
 let realtimeChannel = null;
 let allRoomCodes = [];
 
-function newRoomState(code){
+function getRandomQuestionBank() {
+  const banks = [
+    getDefaultQuestions1,
+    getDefaultQuestions2,
+    getDefaultQuestions3,
+    getDefaultQuestions4,
+    getDefaultQuestions5
+  ];
+
+  const randomIndex = Math.floor(Math.random() * banks.length);
+  return banks[randomIndex]();
+}
+
+function newRoomState(code) {
   return {
-    code, phase:'lobby', players:{},
-    questions:getDefaultQuestions(),
-    currentQ:null, qIndex:0, totalQ:0,
-    showAnswer:false, correctAnswer:null, answerDist:{}
+    code,
+    phase: 'lobby',
+    players: {},
+    questions: getRandomQuestionBank(),
+    currentQ: null,
+    qIndex: 0,
+    totalQ: 0,
+    showAnswer: false,
+    correctAnswer: null,
+    answerDist: {}
   };
 }
 
